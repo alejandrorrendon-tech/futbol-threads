@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Fútbol Threads — Playeras oficiales de equipos de todo el mundo</title>
-<meta name="description" content="Playeras de fútbol oficiales de selecciones y clubes de todo el mundo. Calidad premium, autenticidad garantizada y pedidos por WhatsApp con atención personalizada." />
+<title>Fútbol Threads — Jerseys match-worn y de utilería auténticos</title>
+<meta name="description" content="Jerseys auténticos usados y preparados en partido: utilería, match-worn y piezas de colección. Pedidos por WhatsApp con atención personalizada." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -14,11 +14,12 @@
     --green:#0B6B43;--green-d:#08522F;--gold:#B98A2E;--wa:#1FAF54;
     --ease:cubic-bezier(0.22,1,0.36,1);--ease-soft:cubic-bezier(0.33,0,0.2,1);
     --radius:14px;--shadow:0 10px 30px -12px rgba(20,25,30,.25);
-    --z-nav:50;--z-float:60;--z-toast:80;
+    --z-nav:50;--z-float:60;--z-modal:90;--z-toast:95;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
   body{font-family:'Hanken Grotesk',system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body.lock{overflow:hidden}
   a{color:inherit;text-decoration:none}
   img{display:block;max-width:100%}
   h1,h2,h3{font-family:'Archivo',sans-serif;line-height:1.05;letter-spacing:-0.02em;font-weight:800}
@@ -31,83 +32,79 @@
   .util .sep{opacity:.3}
   @media(max-width:640px){.util .hideSm{display:none}}
 
-  header.nav{position:sticky;top:0;z-index:var(--z-nav);background:rgba(255,255,255,.88);backdrop-filter:saturate(160%) blur(12px);border-bottom:1px solid var(--line)}
+  header.nav{position:sticky;top:0;z-index:var(--z-nav);background:rgba(255,255,255,.9);backdrop-filter:saturate(160%) blur(12px);border-bottom:1px solid var(--line)}
   .nav__in{display:flex;align-items:center;justify-content:space-between;height:70px;gap:18px}
   .brand{display:flex;align-items:center;gap:11px;font-family:'Archivo';font-weight:900;font-size:21px;letter-spacing:-0.02em}
   .brand .logo{width:34px;height:34px;border-radius:9px;background:var(--green);display:grid;place-items:center;color:#fff;font-size:18px}
   .nav__links{display:flex;gap:30px;font-weight:600;font-size:15px;color:var(--ink-2)}
-  .nav__links a{transition:color .2s var(--ease)}
   .nav__links a:hover{color:var(--ink)}
   .btn{font-family:'Hanken Grotesk';font-weight:700;font-size:15px;border:none;cursor:pointer;border-radius:11px;padding:12px 20px;display:inline-flex;align-items:center;gap:9px;transition:transform .15s var(--ease),box-shadow .2s var(--ease),background .2s var(--ease)}
   .btn svg{width:18px;height:18px}
   .btn--wa{background:var(--wa);color:#fff;box-shadow:0 8px 20px -8px rgba(31,175,84,.6)}
   .btn--wa:hover{transform:translateY(-2px);box-shadow:0 12px 26px -8px rgba(31,175,84,.7)}
-  .btn--wa:active{transform:translateY(0)}
   .btn--dark{background:var(--ink);color:#fff}
   .btn--dark:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
   .btn--lg{padding:15px 26px;font-size:16px;border-radius:13px}
 
   .hero{position:relative;background:var(--surface)}
-  .hero__in{display:grid;grid-template-columns:1.05fr 0.95fr;gap:clamp(24px,4vw,56px);align-items:center;padding-block:clamp(40px,6vw,84px)}
+  .hero__in{display:grid;grid-template-columns:1.05fr 0.95fr;gap:clamp(24px,4vw,56px);align-items:center;padding-block:clamp(40px,6vw,80px)}
   .hero__eyebrow{display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--green);background:rgba(11,107,67,.09);padding:7px 13px;border-radius:999px;margin-bottom:22px}
-  .hero h1{font-size:clamp(38px,5.4vw,62px);font-weight:900}
+  .hero h1{font-size:clamp(36px,5vw,58px);font-weight:900}
   .hero h1 .u{color:var(--green)}
-  .hero__sub{margin-top:20px;font-size:clamp(16px,1.6vw,18.5px);color:var(--ink-2);max-width:46ch}
+  .hero__sub{margin-top:20px;font-size:clamp(16px,1.6vw,18px);color:var(--ink-2);max-width:48ch}
   .hero__cta{display:flex;gap:14px;margin-top:30px;flex-wrap:wrap}
   .hero__trust{display:flex;gap:24px;margin-top:34px;flex-wrap:wrap;font-size:14px;color:var(--ink-2);font-weight:600}
   .hero__trust span{display:inline-flex;align-items:center;gap:8px}
   .hero__trust svg{width:18px;height:18px;color:var(--green)}
   .hero__media{position:relative}
-  .hero__media .frame{position:relative;border-radius:20px;overflow:hidden;box-shadow:var(--shadow);aspect-ratio:4/5;background:#ddd}
-  .hero__media .frame img{width:100%;height:100%;object-fit:cover;transition:transform 8s var(--ease-soft)}
-  .hero__media:hover .frame img{transform:scale(1.06)}
-  .hero__chip{position:absolute;left:-14px;bottom:26px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 16px;box-shadow:var(--shadow);display:flex;align-items:center;gap:12px}
-  .hero__chip .st{color:var(--gold);font-size:15px;letter-spacing:1px}
-  .hero__chip b{font-family:'Archivo';font-size:18px}
-  .hero__chip small{display:block;color:var(--ink-2);font-size:12.5px;font-weight:600}
+  .hero__media .frame{position:relative;border-radius:20px;overflow:hidden;box-shadow:var(--shadow);aspect-ratio:4/5;background:#e9e7e1}
+  .hero__media .frame img{width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform 8s var(--ease-soft)}
+  .hero__media:hover .frame img{transform:scale(1.05)}
+  .hero__chip{position:absolute;left:-14px;bottom:26px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 16px;box-shadow:var(--shadow)}
+  .hero__chip b{font-family:'Archivo';font-size:16px;display:block}
+  .hero__chip small{color:var(--ink-2);font-size:12.5px;font-weight:600}
 
-  .shead{text-align:center;max-width:640px;margin:0 auto;padding-block:clamp(48px,6vw,72px) 8px}
+  .shead{text-align:center;max-width:660px;margin:0 auto;padding-block:clamp(48px,6vw,72px) 8px}
   .shead .kick{font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--green)}
   .shead h2{font-size:clamp(30px,4vw,46px);margin-top:10px}
   .shead p{margin-top:14px;color:var(--ink-2);font-size:16.5px}
 
-  .carousel{padding-block:24px clamp(28px,5vw,56px);overflow:hidden}
+  /* carousel */
+  .carousel{padding-block:24px clamp(28px,5vw,48px);overflow:hidden}
   .car__viewport{overflow:hidden;padding-block:24px}
   .car__track{display:flex;gap:24px;will-change:transform;transition:transform .7s var(--ease)}
-  .car__slide{flex:0 0 auto;width:clamp(260px,68vw,360px);opacity:.45;transform:scale(.86);transition:opacity .6s var(--ease),transform .6s var(--ease);cursor:pointer}
+  .car__slide{flex:0 0 auto;width:clamp(250px,66vw,330px);opacity:.4;transform:scale(.85);transition:opacity .6s var(--ease),transform .6s var(--ease);cursor:pointer}
   .car__slide.is-active{opacity:1;transform:scale(1)}
   .car__card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
   .car__img{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--surface)}
-  .car__img img{width:100%;height:100%;object-fit:cover}
+  .car__img img{width:100%;height:100%;object-fit:cover;object-position:center top}
   .car__badge{position:absolute;top:12px;left:12px;background:rgba(22,25,28,.86);color:#fff;font-size:12px;font-weight:700;padding:5px 11px;border-radius:999px;backdrop-filter:blur(4px)}
-  .car__meta{padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
-  .car__meta h3{font-size:20px;font-weight:800}
-  .car__meta .cat{font-size:13px;color:var(--ink-2);font-weight:600}
-  .car__meta .price{font-family:'Archivo';font-weight:800;font-size:18px;color:var(--green)}
+  .car__meta{padding:16px 18px}
+  .car__meta h3{font-size:18px;font-weight:800}
+  .car__meta .cat{font-size:13px;color:var(--ink-2);font-weight:600;margin-top:2px}
   .car__ctrls{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:8px}
-  .car__btn{width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:#fff;display:grid;place-items:center;cursor:pointer;transition:transform .15s var(--ease),background .2s var(--ease),border-color .2s,color .2s}
+  .car__btn{width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:#fff;display:grid;place-items:center;cursor:pointer;transition:transform .15s var(--ease),background .2s,color .2s,border-color .2s}
   .car__btn:hover{background:var(--ink);color:#fff;border-color:var(--ink);transform:scale(1.05)}
   .car__btn svg{width:20px;height:20px}
   .car__dots{display:flex;gap:9px}
   .car__dot{width:9px;height:9px;border-radius:50%;background:var(--line);border:none;cursor:pointer;padding:0;transition:width .3s var(--ease),background .3s var(--ease)}
   .car__dot.on{width:26px;border-radius:5px;background:var(--green)}
 
+  /* catalog */
   .catalog{padding-bottom:clamp(40px,6vw,72px)}
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:26px;margin-top:34px}
-  .prod{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+  .prod{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;cursor:pointer;transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
   .prod:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
-  .prod__img{position:relative;aspect-ratio:1/1;overflow:hidden;background:var(--surface)}
-  .prod__img img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
-  .prod:hover .prod__img img{transform:scale(1.07)}
+  .prod__img{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--surface)}
+  .prod__img img{width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform .6s var(--ease)}
+  .prod:hover .prod__img img{transform:scale(1.05)}
   .prod__tag{position:absolute;top:12px;left:12px;background:#fff;border:1px solid var(--line);font-size:12px;font-weight:700;color:var(--ink);padding:5px 10px;border-radius:999px}
-  .prod__b{padding:18px;display:flex;flex-direction:column;gap:6px;flex:1}
-  .prod__row{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+  .prod__b{padding:18px;display:flex;flex-direction:column;gap:4px;flex:1}
   .prod__b h3{font-size:18px;font-weight:800}
   .prod__cat{font-size:13px;color:var(--ink-2);font-weight:600}
-  .prod__st{color:var(--gold);font-size:13px;letter-spacing:.5px}
-  .prod__price{font-family:'Archivo';font-weight:800;font-size:18px}
-  .prod .btn{margin-top:12px;width:100%;justify-content:center}
+  .prod__more{margin-top:12px;font-weight:700;font-size:14px;color:var(--green);display:inline-flex;align-items:center;gap:6px}
 
+  /* trust */
   .trust{background:var(--surface);border-block:1px solid var(--line)}
   .trust__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;padding-block:clamp(40px,5vw,64px)}
   .trust__card{text-align:center;padding:8px}
@@ -116,37 +113,62 @@
   .trust__card h3{font-size:19px;margin-bottom:8px}
   .trust__card p{color:var(--ink-2);font-size:15px}
 
-  .reviews{padding-bottom:clamp(40px,6vw,72px)}
-  .rgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin-top:34px}
-  .rev{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;display:flex;flex-direction:column;gap:14px}
-  .rev .st{color:var(--gold);letter-spacing:1px}
-  .rev p{color:var(--ink);font-size:15.5px}
-  .rev .who{display:flex;align-items:center;gap:12px;margin-top:auto}
-  .rev .av{width:44px;height:44px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;font-family:'Archivo';font-weight:800;font-size:17px}
-  .rev .nm{font-weight:700;font-size:15px}
-  .rev .ct{color:var(--ink-2);font-size:13px}
-  .rev .vf{margin-left:auto;font-size:12px;font-weight:700;color:var(--green);display:flex;align-items:center;gap:5px}
-
+  /* band */
   .band{background:linear-gradient(135deg,var(--green-d),var(--green));color:#fff}
-  .band .wrap{display:flex;align-items:center;justify-content:space-between;gap:28px;padding-block:clamp(40px,5vw,60px);flex-wrap:wrap}
-  .band h2{font-size:clamp(26px,3.4vw,40px);max-width:18ch;color:#fff}
-  .band p{margin-top:10px;opacity:.9;max-width:42ch}
+  .band .wrap{display:flex;align-items:center;justify-content:space-between;gap:28px;padding-block:clamp(40px,5vw,58px);flex-wrap:wrap}
+  .band h2{font-size:clamp(26px,3.4vw,38px);max-width:18ch;color:#fff}
+  .band p{margin-top:10px;opacity:.9;max-width:44ch}
   .band .btn--wa{background:#fff;color:var(--green-d)}
-  .band .btn--wa:hover{background:#f3f3f3}
 
-  footer{background:var(--ink);color:#cfd3d7;padding-block:clamp(44px,5vw,64px) 26px}
-  .foot{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:30px}
+  footer{background:var(--ink);color:#cfd3d7;padding-block:clamp(44px,5vw,60px) 26px}
+  .foot{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:30px}
   .foot .brand{color:#fff;margin-bottom:14px}
-  .foot p{font-size:14.5px;max-width:32ch}
-  .foot h4{color:#fff;font-family:'Archivo';font-size:14px;letter-spacing:.04em;margin-bottom:14px}
+  .foot p{font-size:14.5px;max-width:34ch}
+  .foot h4{color:#fff;font-family:'Archivo';font-size:14px;margin-bottom:14px}
   .foot ul{list-style:none;display:flex;flex-direction:column;gap:10px}
-  .foot a{font-size:14.5px;transition:color .2s}
+  .foot a{font-size:14.5px}
   .foot a:hover{color:#fff}
   .foot__bottom{border-top:1px solid #2a2e33;margin-top:36px;padding-top:20px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:13px;color:#8b9096}
 
   .wa-float{position:fixed;right:22px;bottom:22px;z-index:var(--z-float);background:var(--wa);color:#fff;border-radius:999px;padding:14px 20px;display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px;box-shadow:0 12px 30px -8px rgba(31,175,84,.7);transition:transform .2s var(--ease)}
   .wa-float:hover{transform:translateY(-3px)}
   .wa-float svg{width:24px;height:24px}
+
+  /* MODAL */
+  .modal{position:fixed;inset:0;z-index:var(--z-modal);display:none}
+  .modal.open{display:block}
+  .modal__bd{position:absolute;inset:0;background:rgba(16,19,22,.55);backdrop-filter:blur(3px);opacity:0;transition:opacity .3s var(--ease)}
+  .modal.open .modal__bd{opacity:1}
+  .modal__panel{position:relative;max-width:1000px;margin:clamp(12px,4vh,48px) auto;background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 30px 80px -20px rgba(0,0,0,.5);max-height:92vh;display:flex;flex-direction:column;transform:translateY(16px) scale(.98);opacity:0;transition:transform .35s var(--ease),opacity .35s var(--ease)}
+  .modal.open .modal__panel{transform:none;opacity:1}
+  .modal__x{position:absolute;top:14px;right:14px;z-index:3;width:40px;height:40px;border-radius:50%;border:none;background:rgba(255,255,255,.9);color:var(--ink);font-size:22px;cursor:pointer;display:grid;place-items:center;box-shadow:var(--shadow);transition:transform .15s var(--ease)}
+  .modal__x:hover{transform:scale(1.08)}
+  .modal__grid{display:grid;grid-template-columns:1fr 1fr;overflow:auto}
+  .mg{background:var(--surface);padding:24px;display:flex;flex-direction:column;gap:14px}
+  .mg__main{border-radius:12px;overflow:hidden;background:#fff;border:1px solid var(--line);aspect-ratio:4/5}
+  .mg__main img{width:100%;height:100%;object-fit:cover;object-position:center top}
+  .mg__thumbs{display:flex;gap:10px}
+  .mg__thumbs button{flex:1;border-radius:10px;overflow:hidden;border:2px solid transparent;background:#fff;cursor:pointer;aspect-ratio:1/1;padding:0}
+  .mg__thumbs button.on{border-color:var(--green)}
+  .mg__thumbs img{width:100%;height:100%;object-fit:cover;object-position:center top}
+  .minfo{padding:clamp(20px,3vw,34px);display:flex;flex-direction:column;gap:8px}
+  .minfo .tag{align-self:flex-start;background:rgba(11,107,67,.1);color:var(--green);font-weight:700;font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;padding:6px 12px;border-radius:999px}
+  .minfo h2{font-size:clamp(24px,3vw,32px);margin-top:6px}
+  .minfo .lead{color:var(--ink-2);font-size:15.5px;margin-top:6px}
+  .spec{border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:18px}
+  .spec__h{background:var(--green);color:#fff;padding:13px 18px;font-family:'Archivo';font-weight:800;font-size:14px;letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+  .spec__h .who{font-family:'Hanken Grotesk';font-weight:600;font-size:14px;opacity:.92;letter-spacing:0;text-transform:none}
+  .spec__b{display:grid;grid-template-columns:repeat(2,1fr)}
+  .spec__row{padding:13px 18px;border-top:1px solid var(--line)}
+  .spec__row:nth-child(odd){border-right:1px solid var(--line)}
+  .spec__row .k{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-2)}
+  .spec__row .v{font-weight:700;font-size:15px;margin-top:3px}
+  .match{display:flex;align-items:center;gap:16px;padding:16px 18px;border-top:1px solid var(--line)}
+  .match .score{font-family:'Archivo';font-weight:800;font-size:22px;color:var(--green);white-space:nowrap}
+  .match .mtxt .k{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-2)}
+  .match .mtxt .v{font-weight:700;font-size:15px}
+  .minfo .btn--wa{margin-top:22px;width:100%;justify-content:center}
+  @media(max-width:760px){ .modal__grid{grid-template-columns:1fr} }
 
   .toast{position:fixed;left:50%;bottom:30px;transform:translate(-50%,160%);z-index:var(--z-toast);background:var(--ink);color:#fff;border-radius:12px;padding:14px 20px;font-weight:600;font-size:14.5px;display:flex;align-items:center;gap:10px;box-shadow:var(--shadow);transition:transform .45s var(--ease)}
   .toast.show{transform:translate(-50%,0)}
@@ -159,7 +181,7 @@
     .hero__in{grid-template-columns:1fr;text-align:center}
     .hero__eyebrow,.hero__cta,.hero__trust{justify-content:center}
     .hero__sub{margin-inline:auto}
-    .hero__media{max-width:440px;margin:0 auto;order:-1}
+    .hero__media{max-width:420px;margin:0 auto;order:-1}
     .trust__grid{grid-template-columns:1fr;gap:30px}
     .foot{grid-template-columns:1fr 1fr}
   }
@@ -179,11 +201,11 @@
 
 <div class="util">
   <div class="wrap">
-    <span>Playeras oficiales de equipos de todo el mundo</span>
+    <span>Jerseys auténticos usados y preparados en partido</span>
     <span class="sep hideSm">•</span>
-    <span class="hideSm">Envíos nacionales e internacionales</span>
+    <span class="hideSm">Piezas de utilería y match-worn</span>
     <span class="sep hideSm">•</span>
-    <span class="hideSm">Pago seguro</span>
+    <span class="hideSm">Pedidos por WhatsApp</span>
   </div>
 </div>
 
@@ -193,8 +215,7 @@
     <nav class="nav__links" aria-label="Navegación principal">
       <a href="#coleccion">Colección</a>
       <a href="#catalogo">Catálogo</a>
-      <a href="#nosotros">Por qué elegirnos</a>
-      <a href="#opiniones">Opiniones</a>
+      <a href="#autenticidad">Autenticidad</a>
     </nav>
     <a class="btn btn--wa" id="navWa" href="#" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.039zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
@@ -208,29 +229,29 @@
 <section class="hero">
   <div class="wrap hero__in">
     <div class="hero__copy">
-      <span class="hero__eyebrow">Temporada 2026</span>
-      <h1>Las playeras de los <span class="u">mejores equipos del mundo</span></h1>
-      <p class="hero__sub">Selecciones y clubes de todo el planeta, con calidad premium y autenticidad garantizada. Realiza tu pedido por WhatsApp con atención personalizada y recíbelo en la puerta de tu casa.</p>
+      <span class="hero__eyebrow">Piezas auténticas</span>
+      <h1>Jerseys <span class="u">usados y preparados</span> en partido</h1>
+      <p class="hero__sub">Utilería, match-worn y piezas de colección de jugadores profesionales. Cada artículo conserva los detalles oficiales de competencia. Realiza tu pedido por WhatsApp con atención personalizada.</p>
       <div class="hero__cta">
-        <a class="btn btn--dark btn--lg" href="#coleccion">Ver colección</a>
+        <a class="btn btn--dark btn--lg" href="#catalogo">Ver catálogo</a>
         <a class="btn btn--wa btn--lg" id="heroWa" href="#" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.039zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
           Pedir por WhatsApp
         </a>
       </div>
       <div class="hero__trust">
-        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Producto auténtico</span>
-        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> Envío internacional</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg> Autenticidad garantizada</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Pieza única</span>
         <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg> Atención por WhatsApp</span>
       </div>
     </div>
     <div class="hero__media">
       <div class="frame">
-        <img src="https://images.unsplash.com/photo-1670489520245-c41cb342a565?auto=format&fit=crop&w=1100&q=80" alt="Jugador profesional de fútbol celebrando en el campo con su playera puesta" loading="eager">
+        <img src="ramos-front.jpg" alt="Jersey de utilería de Sergio Ramos con Rayados de Monterrey" loading="eager">
       </div>
       <div class="hero__chip">
-        <span class="st">★★★★★</span>
-        <div><b>4.9 / 5</b><small>+1,200 pedidos entregados</small></div>
+        <b>Sergio Ramos · #93</b>
+        <small>Rayados · Mundial de Clubes 2025</small>
       </div>
     </div>
   </div>
@@ -239,8 +260,8 @@
 <section id="coleccion" class="carousel">
   <div class="shead reveal">
     <span class="kick">Colección destacada</span>
-    <h2>Las playeras del momento</h2>
-    <p>Una selección rotativa de los modelos más solicitados de la temporada. Desliza o usa los controles para explorarlas.</p>
+    <h2>Piezas en vitrina</h2>
+    <p>Jerseys auténticos de jugadores profesionales. Desliza o usa los controles; haz clic en una pieza para ver su ficha completa.</p>
   </div>
   <div class="car__viewport" id="carViewport">
     <div class="car__track" id="carTrack"></div>
@@ -255,52 +276,43 @@
 <section id="catalogo" class="catalog wrap">
   <div class="shead reveal">
     <span class="kick">Catálogo</span>
-    <h2>Selecciones y clubes del mundo</h2>
-    <p>Tallas de la S a la XXL, versión jugador y versión aficionado. Consulta disponibilidad por WhatsApp.</p>
+    <h2>Jerseys auténticos</h2>
+    <p>Haz clic en cualquier pieza para ver la ficha completa: el jugador, el partido y los detalles de la prenda.</p>
   </div>
   <div class="grid" id="catGrid"></div>
 </section>
 
-<section id="nosotros" class="trust">
+<section id="autenticidad" class="trust">
   <div class="wrap">
     <div class="shead reveal">
-      <span class="kick">Por qué elegirnos</span>
-      <h2>Compra con confianza</h2>
+      <span class="kick">Autenticidad</span>
+      <h2>Por qué confiar en nosotros</h2>
     </div>
     <div class="trust__grid">
       <div class="trust__card reveal">
         <div class="trust__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg></div>
-        <h3>Autenticidad garantizada</h3>
-        <p>Trabajamos con proveedores verificados. Cada playera pasa por revisión de calidad antes de enviarse.</p>
+        <h3>Piezas auténticas</h3>
+        <p>Jerseys de utilería, usados y preparados en partido por jugadores profesionales, con sus aplicaciones oficiales.</p>
       </div>
       <div class="trust__card reveal">
-        <div class="trust__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
-        <h3>Envíos nacionales e internacionales</h3>
-        <p>Entregas de 2 a 4 días hábiles a nivel nacional y opciones de envío a otros países.</p>
+        <div class="trust__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="5"/><path d="M8 21l4-3 4 3-1.5-7"/></svg></div>
+        <h3>Edición única</h3>
+        <p>Cada artículo es una pieza irrepetible de colección, con nombre, dorsal y parches correspondientes a su temporada.</p>
       </div>
       <div class="trust__card reveal">
         <div class="trust__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></div>
         <h3>Atención personalizada</h3>
-        <p>Te asesoramos con tallas, estampados y disponibilidad directamente por WhatsApp, sin intermediarios.</p>
+        <p>Resolvemos tus dudas sobre cada pieza directamente por WhatsApp y coordinamos el envío contigo.</p>
       </div>
     </div>
   </div>
-</section>
-
-<section id="opiniones" class="reviews wrap">
-  <div class="shead reveal">
-    <span class="kick">Opiniones</span>
-    <h2>Lo que dicen nuestros clientes</h2>
-    <p>Reseñas verificadas de pedidos realizados a través de WhatsApp.</p>
-  </div>
-  <div class="rgrid" id="revGrid"></div>
 </section>
 
 <section class="band">
   <div class="wrap">
     <div>
-      <h2>¿Listo para vestir tus colores?</h2>
-      <p>Escríbenos por WhatsApp y recibe asesoría personalizada en minutos.</p>
+      <h2>¿Te interesa una pieza?</h2>
+      <p>Escríbenos por WhatsApp y te damos toda la información de la prenda que buscas.</p>
     </div>
     <a class="btn btn--wa btn--lg" id="bandWa" href="#" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.039zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
@@ -314,36 +326,28 @@
     <div class="foot">
       <div>
         <div class="brand"><span class="logo">⚽</span> Fútbol Threads</div>
-        <p>Playeras de fútbol oficiales de equipos de todo el mundo. Atención personalizada y pedidos por WhatsApp.</p>
+        <p>Jerseys auténticos de utilería y match-worn de jugadores profesionales. Pedidos y dudas por WhatsApp.</p>
       </div>
       <div>
         <h4>Tienda</h4>
         <ul>
           <li><a href="#coleccion">Colección</a></li>
           <li><a href="#catalogo">Catálogo</a></li>
-          <li><a href="#opiniones">Opiniones</a></li>
+          <li><a href="#autenticidad">Autenticidad</a></li>
         </ul>
       </div>
       <div>
-        <h4>Ayuda</h4>
+        <h4>Contacto</h4>
         <ul>
-          <li><a href="#" id="footWa">Pedir por WhatsApp</a></li>
-          <li><a href="#nosotros">Envíos y entregas</a></li>
-          <li><a href="#nosotros">Guía de tallas</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Síguenos</h4>
-        <ul>
+          <li><a href="#" id="footWa">WhatsApp</a></li>
           <li><a href="#">Instagram</a></li>
           <li><a href="#">Facebook</a></li>
-          <li><a href="#">TikTok</a></li>
         </ul>
       </div>
     </div>
     <div class="foot__bottom">
       <span>© <span id="year"></span> Fútbol Threads · Sitio demostrativo</span>
-      <span>Las mejores playeras del mundo, en un solo lugar</span>
+      <span>Piezas auténticas de colección</span>
     </div>
   </div>
 </footer>
@@ -353,47 +357,67 @@
   <span>WhatsApp</span>
 </a>
 
+<div class="modal" id="modal" aria-hidden="true">
+  <div class="modal__bd" data-close></div>
+  <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+    <button class="modal__x" data-close aria-label="Cerrar">&times;</button>
+    <div class="modal__grid">
+      <div class="mg">
+        <div class="mg__main"><img id="mgMain" src="" alt=""></div>
+        <div class="mg__thumbs" id="mgThumbs"></div>
+      </div>
+      <div class="minfo" id="minfo"></div>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"><span class="k">✓</span> <span id="toastMsg"></span></div>
 
 <script>
 /* ===== CONFIG ===== */
-/* Reemplaza por tu numero real de WhatsApp (formato internacional, sin + ni espacios).
-   Ejemplo Mexico: 5215512345678 */
+/* Reemplaza por tu numero real de WhatsApp (formato internacional, sin + ni espacios). Ej: 5215512345678 */
 var WHATSAPP_NUMBER = "5215555555555"; // PLACEHOLDER
 var STORE = "Futbol Threads";
 function waLink(m){ return "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(m); }
-var genericMsg = "Hola, " + STORE + ". Me interesa una playera de su coleccion. Me podrian brindar mas informacion?";
+var genericMsg = "Hola, " + STORE + ". Me interesa una pieza de su coleccion. Me podrian dar mas informacion?";
 
-/* ===== DATA (fotos reales verificadas de Unsplash) ===== */
-function U(id,w){ return "https://images.unsplash.com/photo-" + id + "?auto=format&fit=crop&w=" + (w||800) + "&q=80"; }
+/* ===== DATA (solo informacion proporcionada por el cliente) ===== */
 var products = [
-  {team:"Brasil", cat:"Seleccion - Local", price:"1,299", tag:"Mas vendida", st:5, img:"1552066379-e7bfd22155c5", alt:"Playera amarilla de la seleccion de Brasil colgada en vestidor"},
-  {team:"Espana", cat:"Seleccion - Local", price:"1,249", tag:"Nueva", st:5, img:"1551854321-1432edd90a5c", alt:"Aficionado con la playera roja de la seleccion de Espana"},
-  {team:"Alemania", cat:"Seleccion - Visitante", price:"1,249", tag:"Edicion", st:4, img:"1551854386-b42759a60dd0", alt:"Playera verde de visitante de la seleccion de Alemania"},
-  {team:"Paises Bajos", cat:"Seleccion - Local", price:"1,199", tag:"Clasica", st:5, img:"1693683224122-0a8e206f248d", alt:"Playera naranja de la seleccion de Paises Bajos"},
-  {team:"FC Barcelona", cat:"Club - Edicion especial", price:"1,399", tag:"Premium", st:5, img:"1738091063217-1f59463342c9", alt:"Playera dorada del FC Barcelona, edicion especial"},
-  {team:"Arsenal FC", cat:"Club - Local", price:"1,199", tag:"Top", st:4, img:"1577212017184-80cc0da11082", alt:"Playera roja del Arsenal FC colgada"},
-  {team:"Manchester United", cat:"Club - Local", price:"1,349", tag:"Iconica", st:5, img:"1649771543037-916e2702008a", alt:"Playeras rojas del Manchester United en el vestidor"}
+  { id:"ramos", title:"Utilería Sergio Ramos #93", tag:"Utilería",
+    player:"Sergio Ramos", num:"93", club:"Rayados de Monterrey", season:"Mundial de Clubes 2025", brand:"Puma", type:"Utilería",
+    desc:"Jersey de utilería de Sergio Ramos, correspondiente a la primera etapa del defensor español con Rayados de Monterrey. Diseño especial de Puma utilizado durante la participación internacional del club, incluyendo parche oficial FIFA en la manga.",
+    front:"ramos-front.jpg", back:"ramos-back.jpg", match:null },
+  { id:"orozco", title:"Utilería Jonathan Orozco #1", tag:"Portero",
+    player:"Jonathan Orozco", num:"1", club:"Rayados de Monterrey", season:"2010-11", brand:"Nike", type:"Utilería",
+    desc:"Jersey de portero de Jonathan Orozco correspondiente a una de las etapas más exitosas de Rayados en la Liga MX. Destacan los patrocinadores históricos Carta Blanca y Bimbo, además del diseño Nike utilizado durante la época bicampeona del club.",
+    front:"orozco-front.jpg", back:"orozco-back.jpg", match:null },
+  { id:"marcel", title:"Marcel Ruiz #14 — Toluca", tag:"Usada en partido",
+    player:"Marcel Ruiz", num:"14", club:"Toluca", season:"2024-25", brand:"New Balance", type:"Usada en partido",
+    desc:"Jersey de manga larga utilizado en partido por Marcel Ruiz con Toluca. Cuenta con parche oficial de Campeón de Campeones y todos los detalles profesionales utilizados por el mediocampista durante competencia oficial.",
+    front:"marcel-front.jpg", back:"marcel-back.jpg", match:{ rival:"Xolos de Tijuana", score:null } },
+  { id:"guardado", title:"Andrés Guardado #18 — León", tag:"Usada en juego",
+    player:"Andrés Guardado", num:"18", club:"Club León", season:"2024-25", brand:"Charly", type:"Usada en juego",
+    desc:"Jersey utilizado por Andrés Guardado durante su etapa con Club León. Presenta el distintivo dorsal rosa conmemorativo y todas las aplicaciones oficiales utilizadas para competencia profesional.",
+    front:"guardado-front.jpg", back:"guardado-back.jpg", match:{ rival:"Juárez", score:"León 3 – 2 Juárez" } },
+  { id:"gutierrez", title:"Erick Gutiérrez #15 — Chivas", tag:"Preparada para partido",
+    player:"Erick Gutiérrez", num:"15", club:"Guadalajara (Chivas)", season:"2024-25", brand:"Puma", type:"Preparada para partido",
+    desc:"Jersey preparado para juego por Erick Gutiérrez durante la temporada 2024-25 con el Club Deportivo Guadalajara. Conserva nombre y dorsal oficiales aplicados para competencia profesional.",
+    front:"gutierrez-front.jpg", back:"gutierrez-back.jpg", match:null }
 ];
-
-function stars(n){ return "★".repeat(n) + "☆".repeat(5-n); }
 
 var waSvg = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.039zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>';
 
 /* ===== CAROUSEL ===== */
-var carData = products.slice(0,6);
 var track = document.getElementById('carTrack');
-track.innerHTML = carData.map(function(p,i){
-  return '<div class="car__slide" data-i="'+i+'"><div class="car__card"><div class="car__img"><span class="car__badge">'+p.tag+'</span><img src="'+U(p.img,700)+'" alt="'+p.alt+'" loading="lazy"></div><div class="car__meta"><div><h3>'+p.team+'</h3><div class="cat">'+p.cat+'</div></div><div class="price">$'+p.price+'</div></div></div></div>';
+track.innerHTML = products.map(function(p,i){
+  return '<div class="car__slide" data-i="'+i+'"><div class="car__card"><div class="car__img"><span class="car__badge">'+p.tag+'</span><img src="'+p.front+'" alt="'+p.title+'"></div><div class="car__meta"><h3>'+p.player+' · #'+p.num+'</h3><div class="cat">'+p.club+'</div></div></div></div>';
 }).join('');
-
 var dotsWrap = document.getElementById('carDots');
-dotsWrap.innerHTML = carData.map(function(_,i){ return '<button class="car__dot" data-i="'+i+'" aria-label="Ir a la playera '+(i+1)+'"></button>'; }).join('');
-
+dotsWrap.innerHTML = products.map(function(_,i){ return '<button class="car__dot" data-i="'+i+'" aria-label="Pieza '+(i+1)+'"></button>'; }).join('');
 var slides = Array.prototype.slice.call(track.children);
 var dots = Array.prototype.slice.call(dotsWrap.children);
 var viewport = document.getElementById('carViewport');
-var active = 0, autoplay = null;
+var active = 0, autoplay = null, moved = false;
 
 function layout(){
   var vpw = viewport.clientWidth;
@@ -404,57 +428,96 @@ function layout(){
   slides.forEach(function(s,i){ s.classList.toggle('is-active', i===active); });
   dots.forEach(function(d,i){ d.classList.toggle('on', i===active); });
 }
-function go(i){ active = (i+carData.length)%carData.length; layout(); }
+function go(i){ active=(i+products.length)%products.length; layout(); }
 function next(){ go(active+1); }
 function prev(){ go(active-1); }
-
 document.getElementById('carNext').addEventListener('click', function(){ next(); restart(); });
 document.getElementById('carPrev').addEventListener('click', function(){ prev(); restart(); });
 dots.forEach(function(d){ d.addEventListener('click', function(){ go(+d.dataset.i); restart(); }); });
-slides.forEach(function(s){ s.addEventListener('click', function(){ go(+s.dataset.i); restart(); }); });
-
-function start(){ if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; autoplay = setInterval(next, 3800); }
+slides.forEach(function(s){
+  s.addEventListener('click', function(){
+    if(moved) return;
+    var i=+s.dataset.i;
+    if(i===active){ openModal(i); } else { go(i); restart(); }
+  });
+});
+function start(){ if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; autoplay=setInterval(next,4200); }
 function stop(){ clearInterval(autoplay); }
 function restart(){ stop(); start(); }
 viewport.addEventListener('mouseenter', stop);
 viewport.addEventListener('mouseleave', start);
-
 var sx=0, dragging=false;
-viewport.addEventListener('pointerdown', function(e){ sx=e.clientX; dragging=true; stop(); });
+viewport.addEventListener('pointerdown', function(e){ sx=e.clientX; dragging=true; moved=false; stop(); });
+window.addEventListener('pointermove', function(e){ if(dragging && Math.abs(e.clientX-sx)>8) moved=true; });
 window.addEventListener('pointerup', function(e){ if(!dragging) return; dragging=false; var dx=e.clientX-sx; if(Math.abs(dx)>45){ dx<0?next():prev(); } start(); });
 window.addEventListener('resize', layout);
 layout(); start();
 
 /* ===== CATALOG ===== */
-document.getElementById('catGrid').innerHTML = products.map(function(p){
-  return '<article class="prod reveal"><div class="prod__img"><span class="prod__tag">'+p.tag+'</span><img src="'+U(p.img,600)+'" alt="'+p.alt+'" loading="lazy"></div><div class="prod__b"><div class="prod__row"><h3>'+p.team+'</h3><span class="prod__st">'+stars(p.st)+'</span></div><div class="prod__cat">'+p.cat+'</div><div class="prod__row" style="margin-top:4px"><span class="prod__price">$'+p.price+'</span></div><button class="btn btn--wa order" data-team="'+p.team+'" data-price="'+p.price+'">'+waSvg+' Consultar por WhatsApp</button></div></article>';
+document.getElementById('catGrid').innerHTML = products.map(function(p,i){
+  return '<article class="prod reveal" data-i="'+i+'"><div class="prod__img"><span class="prod__tag">'+p.tag+'</span><img src="'+p.front+'" alt="'+p.title+'" loading="lazy"></div><div class="prod__b"><h3>'+p.player+' · #'+p.num+'</h3><div class="prod__cat">'+p.club+' · '+p.season+'</div><span class="prod__more">Ver ficha &rarr;</span></div></article>';
 }).join('');
+document.getElementById('catGrid').addEventListener('click', function(e){
+  var a=e.target.closest('.prod'); if(!a) return; openModal(+a.dataset.i);
+});
 
-/* ===== REVIEWS ===== */
-var reviews = [
-  {nm:"Carlos Mendoza", ct:"Guadalajara", st:5, tx:"Excelente calidad, identica a la original. La atencion por WhatsApp fue muy rapida y la playera llego en tres dias."},
-  {nm:"Ana Robles", ct:"Buenos Aires", st:5, tx:"Pedi la playera de Espana y supero mis expectativas. El proceso de compra fue claro y la asesoria de talla, muy util."},
-  {nm:"Diego Salas", ct:"Bogota", st:5, tx:"Muy buena experiencia. Me resolvieron todas las dudas antes de comprar y el envio fue puntual."},
-  {nm:"Valentina Leon", ct:"Santiago", st:5, tx:"El acabado y el estampado se ven de primera. Volvere a comprar para toda la familia."},
-  {nm:"Jorge Tovar", ct:"Lima", st:5, tx:"Compre dos playeras y ambas llegaron perfectas. La atencion personalizada hace toda la diferencia."},
-  {nm:"Sofia Perez", ct:"Madrid", st:5, tx:"Sitio confiable y producto autentico. Recomendado para cualquier aficionado al futbol."}
-];
-document.getElementById('revGrid').innerHTML = reviews.map(function(r){
-  return '<div class="rev reveal"><div class="st">'+stars(r.st)+'</div><p>“'+r.tx+'”</p><div class="who"><div class="av">'+r.nm.charAt(0)+'</div><div><div class="nm">'+r.nm+'</div><div class="ct">'+r.ct+'</div></div><div class="vf"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> Verificada</div></div></div>';
-}).join('');
+/* ===== MODAL ===== */
+var modal=document.getElementById('modal');
+var mgMain=document.getElementById('mgMain');
+var mgThumbs=document.getElementById('mgThumbs');
+var minfo=document.getElementById('minfo');
+
+function specRow(k,v){ return '<div class="spec__row"><div class="k">'+k+'</div><div class="v">'+v+'</div></div>'; }
+
+function openModal(i){
+  var p=products[i];
+  var imgs=[{src:p.front,label:"Frente"},{src:p.back,label:"Espalda"}];
+  mgMain.src=imgs[0].src; mgMain.alt=p.title;
+  mgThumbs.innerHTML=imgs.map(function(im,k){
+    return '<button class="'+(k===0?'on':'')+'" data-src="'+im.src+'"><img src="'+im.src+'" alt="'+im.label+'"></button>';
+  }).join('');
+  mgThumbs.querySelectorAll('button').forEach(function(b){
+    b.addEventListener('click', function(){
+      mgMain.src=b.dataset.src;
+      mgThumbs.querySelectorAll('button').forEach(function(x){x.classList.remove('on');});
+      b.classList.add('on');
+    });
+  });
+
+  var match='';
+  if(p.match){
+    var sc = p.match.score ? '<div class="score">'+p.match.score+'</div>' : '';
+    match='<div class="match">'+sc+'<div class="mtxt"><div class="k">Partido</div><div class="v">vs '+p.match.rival+'</div></div></div>';
+  }
+
+  minfo.innerHTML =
+    '<span class="tag">'+p.tag+'</span>'+
+    '<h2 id="mTitle">'+p.title+'</h2>'+
+    '<p class="lead">'+p.desc+'</p>'+
+    '<div class="spec">'+
+      '<div class="spec__h">El jugador <span class="who">'+p.player+' · '+p.club+'</span></div>'+
+      '<div class="spec__b">'+
+        specRow('Jugador', p.player)+
+        specRow('Número', '#'+p.num)+
+        specRow('Club', p.club)+
+        specRow('Temporada', p.season)+
+        specRow('Marca', p.brand)+
+        specRow('Tipo', p.type)+
+      '</div>'+
+      ( p.match ? '<div class="spec__h" style="border-top:1px solid var(--line)">El partido</div>'+match : '' )+
+    '</div>'+
+    '<a class="btn btn--wa" target="_blank" rel="noopener" href="'+waLink("Hola, "+STORE+". Me interesa la pieza: "+p.title+" ("+p.club+", "+p.season+"). Me podrian dar mas informacion y disponibilidad?")+'">'+waSvg+' Pedir esta pieza por WhatsApp</a>';
+
+  modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); document.body.classList.add('lock'); stop();
+}
+function closeModal(){ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); document.body.classList.remove('lock'); start(); }
+modal.addEventListener('click', function(e){ if(e.target.hasAttribute('data-close')) closeModal(); });
+document.addEventListener('keydown', function(e){ if(e.key==='Escape' && modal.classList.contains('open')) closeModal(); });
 
 /* ===== WHATSAPP WIRING ===== */
 ['navWa','heroWa','bandWa','floatWa','footWa'].forEach(function(id){ var el=document.getElementById(id); if(el) el.href=waLink(genericMsg); });
 
 var toast=document.getElementById('toast'), toastMsg=document.getElementById('toastMsg'), tt;
-function showToast(m){ toastMsg.textContent=m; toast.classList.add('show'); clearTimeout(tt); tt=setTimeout(function(){ toast.classList.remove('show'); },3200); }
-document.getElementById('catGrid').addEventListener('click', function(e){
-  var b=e.target.closest('.order'); if(!b) return;
-  var msg="Hola, "+STORE+". Me interesa la playera de *"+b.dataset.team+"* ($"+b.dataset.price+"). Me confirman tallas disponibles y tiempo de envio?";
-  showToast('Abriendo WhatsApp - '+b.dataset.team);
-  window.open(waLink(msg),'_blank','noopener');
-});
-
 document.getElementById('year').textContent=new Date().getFullYear();
 
 /* ===== REVEAL ===== */
