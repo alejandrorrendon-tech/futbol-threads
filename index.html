@@ -3,485 +3,463 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>FÚTBOL THREADS — Camisetas del Mundial 2026</title>
-<meta name="description" content="Camisetas de fútbol de selecciones del Mundial 2026. Pedidos directos por WhatsApp. Envío a todo el país." />
+<title>Fútbol Threads — Playeras oficiales de equipos de todo el mundo</title>
+<meta name="description" content="Playeras de fútbol oficiales de selecciones y clubes de todo el mundo. Calidad premium, autenticidad garantizada y pedidos por WhatsApp con atención personalizada." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800;900&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  /* ============ TOKENS ============ */
   :root{
-    --ink:#0A0A0A;
-    --paper:#FFFFFF;
-    --concrete:#ECEAE3;
-    --cyan:#10E7C6;      /* electric teal, hue ~190 */
-    --flare:#FF3B1F;     /* hot orange-red CTA */
-    --wa:#25D366;        /* whatsapp */
-    --line:#0A0A0A;
-
-    --ease-out-expo:cubic-bezier(0.16,1,0.3,1);
-    --ease-out-quint:cubic-bezier(0.22,1,0.36,1);
-
-    --z-nav:40; --z-float:60; --z-toast:80;
+    --ink:#16191C;--ink-2:#454B52;--paper:#FFFFFF;--surface:#F5F4F1;--line:#E4E2DC;
+    --green:#0B6B43;--green-d:#08522F;--gold:#B98A2E;--wa:#1FAF54;
+    --ease:cubic-bezier(0.22,1,0.36,1);--ease-soft:cubic-bezier(0.33,0,0.2,1);
+    --radius:14px;--shadow:0 10px 30px -12px rgba(20,25,30,.25);
+    --z-nav:50;--z-float:60;--z-toast:80;
   }
-
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{
-    font-family:'Archivo',system-ui,sans-serif;
-    background:var(--paper);
-    color:var(--ink);
-    -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
-  }
+  body{font-family:'Hanken Grotesk',system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
   a{color:inherit;text-decoration:none}
-  img,svg{display:block;max-width:100%}
-  ::selection{background:var(--cyan);color:var(--ink)}
+  img{display:block;max-width:100%}
+  h1,h2,h3{font-family:'Archivo',sans-serif;line-height:1.05;letter-spacing:-0.02em;font-weight:800}
+  ::selection{background:var(--green);color:#fff}
+  .wrap{width:100%;max-width:1200px;margin-inline:auto;padding-inline:clamp(18px,4vw,40px)}
 
-  .wrap{width:100%;max-width:1240px;margin-inline:auto;padding-inline:clamp(16px,4vw,40px)}
+  .util{background:var(--ink);color:#fff;font-size:13px;font-weight:500}
+  .util .wrap{display:flex;align-items:center;justify-content:center;gap:22px;height:38px;text-align:center}
+  .util span{display:inline-flex;align-items:center;gap:7px;opacity:.92}
+  .util .sep{opacity:.3}
+  @media(max-width:640px){.util .hideSm{display:none}}
 
-  .display{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:-0.02em;line-height:0.92}
-  .mono{font-family:'Spline Sans Mono',monospace;font-variant-numeric:tabular-nums}
+  header.nav{position:sticky;top:0;z-index:var(--z-nav);background:rgba(255,255,255,.88);backdrop-filter:saturate(160%) blur(12px);border-bottom:1px solid var(--line)}
+  .nav__in{display:flex;align-items:center;justify-content:space-between;height:70px;gap:18px}
+  .brand{display:flex;align-items:center;gap:11px;font-family:'Archivo';font-weight:900;font-size:21px;letter-spacing:-0.02em}
+  .brand .logo{width:34px;height:34px;border-radius:9px;background:var(--green);display:grid;place-items:center;color:#fff;font-size:18px}
+  .nav__links{display:flex;gap:30px;font-weight:600;font-size:15px;color:var(--ink-2)}
+  .nav__links a{transition:color .2s var(--ease)}
+  .nav__links a:hover{color:var(--ink)}
+  .btn{font-family:'Hanken Grotesk';font-weight:700;font-size:15px;border:none;cursor:pointer;border-radius:11px;padding:12px 20px;display:inline-flex;align-items:center;gap:9px;transition:transform .15s var(--ease),box-shadow .2s var(--ease),background .2s var(--ease)}
+  .btn svg{width:18px;height:18px}
+  .btn--wa{background:var(--wa);color:#fff;box-shadow:0 8px 20px -8px rgba(31,175,84,.6)}
+  .btn--wa:hover{transform:translateY(-2px);box-shadow:0 12px 26px -8px rgba(31,175,84,.7)}
+  .btn--wa:active{transform:translateY(0)}
+  .btn--dark{background:var(--ink);color:#fff}
+  .btn--dark:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+  .btn--lg{padding:15px 26px;font-size:16px;border-radius:13px}
 
-  /* ============ MARQUEE TICKER ============ */
-  .ticker{background:var(--ink);color:var(--cyan);border-block:3px solid var(--ink);overflow:hidden;white-space:nowrap}
-  .ticker__track{display:inline-block;padding-block:10px;animation:scrollX 28s linear infinite;will-change:transform}
-  .ticker:hover .ticker__track{animation-play-state:paused}
-  .ticker span{font-family:'Spline Sans Mono',monospace;font-weight:600;font-size:14px;letter-spacing:0.04em;text-transform:uppercase}
-  .ticker .dot{color:var(--flare);padding-inline:18px}
-  @keyframes scrollX{to{transform:translateX(-50%)}}
+  .hero{position:relative;background:var(--surface)}
+  .hero__in{display:grid;grid-template-columns:1.05fr 0.95fr;gap:clamp(24px,4vw,56px);align-items:center;padding-block:clamp(40px,6vw,84px)}
+  .hero__eyebrow{display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--green);background:rgba(11,107,67,.09);padding:7px 13px;border-radius:999px;margin-bottom:22px}
+  .hero h1{font-size:clamp(38px,5.4vw,62px);font-weight:900}
+  .hero h1 .u{color:var(--green)}
+  .hero__sub{margin-top:20px;font-size:clamp(16px,1.6vw,18.5px);color:var(--ink-2);max-width:46ch}
+  .hero__cta{display:flex;gap:14px;margin-top:30px;flex-wrap:wrap}
+  .hero__trust{display:flex;gap:24px;margin-top:34px;flex-wrap:wrap;font-size:14px;color:var(--ink-2);font-weight:600}
+  .hero__trust span{display:inline-flex;align-items:center;gap:8px}
+  .hero__trust svg{width:18px;height:18px;color:var(--green)}
+  .hero__media{position:relative}
+  .hero__media .frame{position:relative;border-radius:20px;overflow:hidden;box-shadow:var(--shadow);aspect-ratio:4/5;background:#ddd}
+  .hero__media .frame img{width:100%;height:100%;object-fit:cover;transition:transform 8s var(--ease-soft)}
+  .hero__media:hover .frame img{transform:scale(1.06)}
+  .hero__chip{position:absolute;left:-14px;bottom:26px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 16px;box-shadow:var(--shadow);display:flex;align-items:center;gap:12px}
+  .hero__chip .st{color:var(--gold);font-size:15px;letter-spacing:1px}
+  .hero__chip b{font-family:'Archivo';font-size:18px}
+  .hero__chip small{display:block;color:var(--ink-2);font-size:12.5px;font-weight:600}
 
-  /* ============ NAV ============ */
-  header.nav{position:sticky;top:0;z-index:var(--z-nav);background:var(--paper);border-bottom:3px solid var(--ink)}
-  .nav__in{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
-  .brand{font-family:'Anton',sans-serif;font-size:24px;letter-spacing:-0.01em;text-transform:uppercase;display:flex;align-items:center;gap:10px}
-  .brand b{background:var(--flare);color:var(--paper);padding:2px 8px;transform:rotate(-3deg);display:inline-block}
-  .nav__links{display:flex;gap:28px;font-weight:700;font-size:14px;text-transform:uppercase;letter-spacing:0.02em}
-  .nav__links a{position:relative;padding:4px 0}
-  .nav__links a::after{content:"";position:absolute;left:0;bottom:-2px;height:3px;width:0;background:var(--cyan);transition:width 220ms var(--ease-out-expo)}
-  .nav__links a:hover::after{width:100%}
-  .btn{font-family:'Archivo';font-weight:800;text-transform:uppercase;letter-spacing:0.02em;font-size:14px;border:3px solid var(--ink);background:var(--ink);color:var(--paper);padding:11px 18px;cursor:pointer;transition:transform 140ms var(--ease-out-quint),box-shadow 140ms var(--ease-out-quint);display:inline-flex;align-items:center;gap:9px}
-  .btn:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--cyan)}
-  .btn:active{transform:translate(0,0);box-shadow:2px 2px 0 var(--cyan)}
-  .btn--wa{background:var(--wa);border-color:var(--ink);color:var(--ink)}
-  .btn--wa:hover{box-shadow:5px 5px 0 var(--ink)}
-  .btn--flare{background:var(--flare);color:var(--paper)}
-  .btn--flare:hover{box-shadow:5px 5px 0 var(--ink)}
-  .nav__toggle{display:none}
+  .shead{text-align:center;max-width:640px;margin:0 auto;padding-block:clamp(48px,6vw,72px) 8px}
+  .shead .kick{font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--green)}
+  .shead h2{font-size:clamp(30px,4vw,46px);margin-top:10px}
+  .shead p{margin-top:14px;color:var(--ink-2);font-size:16.5px}
 
-  /* ============ HERO ============ */
-  .hero{position:relative;background:var(--paper);border-bottom:3px solid var(--ink);overflow:hidden}
-  .hero__grid{display:grid;grid-template-columns:1.15fr 0.85fr;gap:0}
-  .hero__left{padding:clamp(28px,5vw,64px) clamp(16px,4vw,56px);border-right:3px solid var(--ink);display:flex;flex-direction:column;justify-content:center}
-  .hero__kicker{display:inline-flex;align-items:center;gap:10px;font-family:'Spline Sans Mono',monospace;font-weight:600;font-size:13px;letter-spacing:0.06em;text-transform:uppercase;background:var(--cyan);color:var(--ink);padding:6px 12px;border:3px solid var(--ink);width:max-content;margin-bottom:22px}
-  h1.hero__title{font-size:clamp(48px,9vw,104px);max-width:11ch}
-  h1.hero__title .stroke{-webkit-text-stroke:2px var(--ink);color:transparent;-webkit-text-fill-color:transparent}
-  h1.hero__title em{font-style:normal;color:var(--flare)}
-  .hero__sub{font-size:clamp(16px,2vw,19px);font-weight:500;max-width:46ch;margin-top:22px;color:#222}
-  .hero__cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px}
-  .hero__stats{display:flex;gap:26px;margin-top:38px;flex-wrap:wrap}
-  .hero__stat .n{font-family:'Anton',sans-serif;font-size:34px;line-height:1}
-  .hero__stat .l{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;color:#444}
-  .hero__right{position:relative;background:var(--ink);display:flex;align-items:center;justify-content:center;min-height:420px;overflow:hidden}
-  .hero__right::before{content:"";position:absolute;inset:0;background-image:radial-gradient(var(--cyan) 1.4px,transparent 1.4px);background-size:26px 26px;opacity:0.18}
-  .hero__jersey{position:relative;width:min(78%,340px);filter:drop-shadow(14px 14px 0 var(--flare))}
-  .hero__badge{position:absolute;top:18px;right:18px;background:var(--flare);color:var(--paper);font-family:'Anton';font-size:14px;letter-spacing:0.02em;text-transform:uppercase;padding:8px 12px;transform:rotate(4deg);border:3px solid var(--paper)}
-  .hero__float{position:absolute;left:18px;bottom:18px;background:var(--paper);border:3px solid var(--paper);color:var(--ink);font-family:'Spline Sans Mono';font-weight:600;font-size:12px;text-transform:uppercase;padding:7px 10px}
+  .carousel{padding-block:24px clamp(28px,5vw,56px);overflow:hidden}
+  .car__viewport{overflow:hidden;padding-block:24px}
+  .car__track{display:flex;gap:24px;will-change:transform;transition:transform .7s var(--ease)}
+  .car__slide{flex:0 0 auto;width:clamp(260px,68vw,360px);opacity:.45;transform:scale(.86);transition:opacity .6s var(--ease),transform .6s var(--ease);cursor:pointer}
+  .car__slide.is-active{opacity:1;transform:scale(1)}
+  .car__card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+  .car__img{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--surface)}
+  .car__img img{width:100%;height:100%;object-fit:cover}
+  .car__badge{position:absolute;top:12px;left:12px;background:rgba(22,25,28,.86);color:#fff;font-size:12px;font-weight:700;padding:5px 11px;border-radius:999px;backdrop-filter:blur(4px)}
+  .car__meta{padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .car__meta h3{font-size:20px;font-weight:800}
+  .car__meta .cat{font-size:13px;color:var(--ink-2);font-weight:600}
+  .car__meta .price{font-family:'Archivo';font-weight:800;font-size:18px;color:var(--green)}
+  .car__ctrls{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:8px}
+  .car__btn{width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:#fff;display:grid;place-items:center;cursor:pointer;transition:transform .15s var(--ease),background .2s var(--ease),border-color .2s,color .2s}
+  .car__btn:hover{background:var(--ink);color:#fff;border-color:var(--ink);transform:scale(1.05)}
+  .car__btn svg{width:20px;height:20px}
+  .car__dots{display:flex;gap:9px}
+  .car__dot{width:9px;height:9px;border-radius:50%;background:var(--line);border:none;cursor:pointer;padding:0;transition:width .3s var(--ease),background .3s var(--ease)}
+  .car__dot.on{width:26px;border-radius:5px;background:var(--green)}
 
-  /* ============ SECTION SHELL ============ */
-  section{scroll-margin-top:80px}
-  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;padding-block:clamp(40px,6vw,72px) 28px;flex-wrap:wrap}
-  .sec-head h2{font-size:clamp(34px,6vw,68px)}
-  .sec-head h2 .mark{background:var(--ink);color:var(--cyan);padding:0 10px}
-  .sec-head p{font-weight:500;max-width:40ch;color:#333;font-size:15px}
+  .catalog{padding-bottom:clamp(40px,6vw,72px)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:26px;margin-top:34px}
+  .prod{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+  .prod:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+  .prod__img{position:relative;aspect-ratio:1/1;overflow:hidden;background:var(--surface)}
+  .prod__img img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+  .prod:hover .prod__img img{transform:scale(1.07)}
+  .prod__tag{position:absolute;top:12px;left:12px;background:#fff;border:1px solid var(--line);font-size:12px;font-weight:700;color:var(--ink);padding:5px 10px;border-radius:999px}
+  .prod__b{padding:18px;display:flex;flex-direction:column;gap:6px;flex:1}
+  .prod__row{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+  .prod__b h3{font-size:18px;font-weight:800}
+  .prod__cat{font-size:13px;color:var(--ink-2);font-weight:600}
+  .prod__st{color:var(--gold);font-size:13px;letter-spacing:.5px}
+  .prod__price{font-family:'Archivo';font-weight:800;font-size:18px}
+  .prod .btn{margin-top:12px;width:100%;justify-content:center}
 
-  /* ============ SHOP GRID ============ */
-  .shop{padding-bottom:clamp(40px,6vw,72px)}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:0;border:3px solid var(--ink);border-bottom:none}
-  .card{border-bottom:3px solid var(--ink);border-right:3px solid var(--ink);background:var(--paper);padding:22px;display:flex;flex-direction:column;gap:14px;position:relative;transition:background 180ms var(--ease-out-quint)}
-  .card:hover{background:var(--concrete)}
-  .card__media{aspect-ratio:1/1;background:var(--ink);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;border:3px solid var(--ink)}
-  .card__media::before{content:"";position:absolute;inset:0;background-image:linear-gradient(transparent 95%, rgba(16,231,198,0.25) 95%);background-size:100% 22px}
-  .card__jersey{width:74%;transition:transform 300ms var(--ease-out-expo);will-change:transform}
-  .card__tag{position:absolute;top:10px;left:10px;font-family:'Spline Sans Mono';font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:0.04em;background:var(--cyan);color:var(--ink);padding:4px 8px;border:2px solid var(--ink);z-index:2}
-  .card__row{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
-  .card__team{font-family:'Anton';font-size:22px;text-transform:uppercase;letter-spacing:-0.01em}
-  .card__price{font-family:'Spline Sans Mono';font-weight:600;font-size:17px}
-  .card__meta{font-size:12.5px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:0.03em;display:flex;align-items:center;gap:8px}
-  .stars{color:var(--flare);letter-spacing:1px;font-size:13px}
-  .card .btn{width:100%;justify-content:center;margin-top:auto}
-  @media (hover:hover) and (pointer:fine){ .card:hover .card__jersey{transform:translateY(-8px) rotate(-2deg) scale(1.04)} }
+  .trust{background:var(--surface);border-block:1px solid var(--line)}
+  .trust__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;padding-block:clamp(40px,5vw,64px)}
+  .trust__card{text-align:center;padding:8px}
+  .trust__ic{width:52px;height:52px;border-radius:14px;background:#fff;border:1px solid var(--line);display:grid;place-items:center;margin:0 auto 16px;color:var(--green)}
+  .trust__ic svg{width:26px;height:26px}
+  .trust__card h3{font-size:19px;margin-bottom:8px}
+  .trust__card p{color:var(--ink-2);font-size:15px}
 
-  /* ============ PLAYERS ============ */
-  .players{background:var(--ink);color:var(--paper);border-block:3px solid var(--ink)}
-  .players .sec-head h2{color:var(--paper)}
-  .players .sec-head h2 .mark{background:var(--cyan);color:var(--ink)}
-  .players .sec-head p{color:#bdbdbd}
-  .pmarquee{overflow:hidden;border-top:3px solid #2a2a2a;white-space:nowrap}
-  .pmarquee__track{display:inline-flex;align-items:center;animation:scrollX 38s linear infinite;will-change:transform}
-  .pmarquee:hover .pmarquee__track{animation-play-state:paused}
-  .pchip{display:inline-flex;align-items:center;gap:14px;padding:24px clamp(20px,3vw,44px);border-right:3px solid #2a2a2a}
-  .pchip .num{font-family:'Anton';font-size:clamp(40px,5vw,64px);color:var(--cyan);line-height:0.8}
-  .pchip .info{display:flex;flex-direction:column}
-  .pchip .name{font-family:'Anton';font-size:clamp(22px,2.4vw,30px);text-transform:uppercase;letter-spacing:-0.01em}
-  .pchip .team{font-family:'Spline Sans Mono';font-size:12px;color:#9a9a9a;text-transform:uppercase;letter-spacing:0.06em}
+  .reviews{padding-bottom:clamp(40px,6vw,72px)}
+  .rgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin-top:34px}
+  .rev{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;display:flex;flex-direction:column;gap:14px}
+  .rev .st{color:var(--gold);letter-spacing:1px}
+  .rev p{color:var(--ink);font-size:15.5px}
+  .rev .who{display:flex;align-items:center;gap:12px;margin-top:auto}
+  .rev .av{width:44px;height:44px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;font-family:'Archivo';font-weight:800;font-size:17px}
+  .rev .nm{font-weight:700;font-size:15px}
+  .rev .ct{color:var(--ink-2);font-size:13px}
+  .rev .vf{margin-left:auto;font-size:12px;font-weight:700;color:var(--green);display:flex;align-items:center;gap:5px}
 
-  /* ============ REVIEWS ============ */
-  .reviews{padding-bottom:clamp(40px,6vw,80px)}
-  .rgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:20px}
-  .review{border:3px solid var(--ink);padding:22px;background:var(--paper);display:flex;flex-direction:column;gap:12px;box-shadow:6px 6px 0 var(--ink);transition:transform 160ms var(--ease-out-quint),box-shadow 160ms var(--ease-out-quint)}
-  .review:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--cyan)}
-  .review .stars{font-size:16px}
-  .review p{font-weight:500;font-size:15.5px;line-height:1.55}
-  .review .who{display:flex;align-items:center;gap:12px;margin-top:auto}
-  .avatar{width:42px;height:42px;border:3px solid var(--ink);background:var(--cyan);font-family:'Anton';display:flex;align-items:center;justify-content:center;font-size:18px}
-  .who .nm{font-weight:800;font-size:14px;text-transform:uppercase;letter-spacing:0.02em}
-  .who .meta{font-family:'Spline Sans Mono';font-size:11px;color:#666}
-  .verified{margin-left:auto;font-family:'Spline Sans Mono';font-size:10px;font-weight:600;color:var(--ink);background:var(--cyan);border:2px solid var(--ink);padding:3px 6px;text-transform:uppercase}
+  .band{background:linear-gradient(135deg,var(--green-d),var(--green));color:#fff}
+  .band .wrap{display:flex;align-items:center;justify-content:space-between;gap:28px;padding-block:clamp(40px,5vw,60px);flex-wrap:wrap}
+  .band h2{font-size:clamp(26px,3.4vw,40px);max-width:18ch;color:#fff}
+  .band p{margin-top:10px;opacity:.9;max-width:42ch}
+  .band .btn--wa{background:#fff;color:var(--green-d)}
+  .band .btn--wa:hover{background:#f3f3f3}
 
-  /* ============ CTA BANNER ============ */
-  .band{background:var(--flare);color:var(--paper);border-block:3px solid var(--ink)}
-  .band__in{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-block:clamp(34px,5vw,56px);flex-wrap:wrap}
-  .band h2{font-size:clamp(30px,5vw,58px);max-width:16ch}
-  .band .btn{background:var(--paper);color:var(--ink);border-color:var(--paper);font-size:16px;padding:15px 22px}
-  .band .btn:hover{box-shadow:6px 6px 0 var(--ink)}
+  footer{background:var(--ink);color:#cfd3d7;padding-block:clamp(44px,5vw,64px) 26px}
+  .foot{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:30px}
+  .foot .brand{color:#fff;margin-bottom:14px}
+  .foot p{font-size:14.5px;max-width:32ch}
+  .foot h4{color:#fff;font-family:'Archivo';font-size:14px;letter-spacing:.04em;margin-bottom:14px}
+  .foot ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+  .foot a{font-size:14.5px;transition:color .2s}
+  .foot a:hover{color:#fff}
+  .foot__bottom{border-top:1px solid #2a2e33;margin-top:36px;padding-top:20px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:13px;color:#8b9096}
 
-  /* ============ FOOTER ============ */
-  footer{background:var(--ink);color:var(--paper);padding-block:clamp(40px,5vw,64px) 28px}
-  .foot{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px}
-  .foot .brand{color:var(--paper);font-size:30px;margin-bottom:14px}
-  .foot p{color:#9a9a9a;font-size:14px;max-width:34ch;font-weight:500}
-  .foot h4{font-family:'Spline Sans Mono';font-size:12px;text-transform:uppercase;letter-spacing:0.08em;color:var(--cyan);margin-bottom:14px}
-  .foot ul{list-style:none;display:flex;flex-direction:column;gap:9px}
-  .foot ul a{font-weight:600;font-size:14px;color:#ddd}
-  .foot ul a:hover{color:var(--cyan)}
-  .foot__bottom{border-top:3px solid #2a2a2a;margin-top:36px;padding-top:18px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-family:'Spline Sans Mono';font-size:12px;color:#777}
+  .wa-float{position:fixed;right:22px;bottom:22px;z-index:var(--z-float);background:var(--wa);color:#fff;border-radius:999px;padding:14px 20px;display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px;box-shadow:0 12px 30px -8px rgba(31,175,84,.7);transition:transform .2s var(--ease)}
+  .wa-float:hover{transform:translateY(-3px)}
+  .wa-float svg{width:24px;height:24px}
 
-  /* ============ FLOATING WA ============ */
-  .wa-float{position:fixed;right:20px;bottom:20px;z-index:var(--z-float);background:var(--wa);color:var(--ink);border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);border-radius:0;padding:13px 18px;font-family:'Archivo';font-weight:800;text-transform:uppercase;font-size:14px;display:flex;align-items:center;gap:10px;cursor:pointer;transition:transform 160ms var(--ease-out-quint),box-shadow 160ms var(--ease-out-quint)}
-  .wa-float:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink)}
-  .wa-float svg{width:22px;height:22px}
-  .wa-float .pulse{position:absolute;top:-6px;right:-6px;width:16px;height:16px;background:var(--flare);border:2px solid var(--ink);border-radius:50%;animation:pulse 1.8s var(--ease-out-expo) infinite}
-  @keyframes pulse{0%{transform:scale(0.9);opacity:1}70%{transform:scale(1.5);opacity:0}100%{opacity:0}}
+  .toast{position:fixed;left:50%;bottom:30px;transform:translate(-50%,160%);z-index:var(--z-toast);background:var(--ink);color:#fff;border-radius:12px;padding:14px 20px;font-weight:600;font-size:14.5px;display:flex;align-items:center;gap:10px;box-shadow:var(--shadow);transition:transform .45s var(--ease)}
+  .toast.show{transform:translate(-50%,0)}
+  .toast .k{color:#5fe08c}
 
-  /* ============ TOAST ============ */
-  .toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(140%);z-index:var(--z-toast);background:var(--ink);color:var(--paper);border:3px solid var(--cyan);padding:13px 18px;font-weight:700;font-size:14px;display:flex;align-items:center;gap:10px;transition:transform 360ms var(--ease-out-expo)}
-  .toast.show{transform:translateX(-50%) translateY(0)}
-  .toast .k{color:var(--cyan);font-family:'Spline Sans Mono'}
+  .reveal{opacity:0;transform:translateY(20px)}
+  .reveal.in{opacity:1;transform:translateY(0);transition:opacity .7s var(--ease),transform .7s var(--ease)}
 
-  /* ============ REVEAL ============ */
-  .reveal{opacity:0;transform:translateY(22px)}
-  .reveal.in{opacity:1;transform:translateY(0);transition:opacity 620ms var(--ease-out-expo),transform 620ms var(--ease-out-expo)}
-
-  /* ============ RESPONSIVE ============ */
-  @media (max-width:900px){
-    .hero__grid{grid-template-columns:1fr}
-    .hero__left{border-right:none;border-bottom:3px solid var(--ink)}
+  @media(max-width:900px){
+    .hero__in{grid-template-columns:1fr;text-align:center}
+    .hero__eyebrow,.hero__cta,.hero__trust{justify-content:center}
+    .hero__sub{margin-inline:auto}
+    .hero__media{max-width:440px;margin:0 auto;order:-1}
+    .trust__grid{grid-template-columns:1fr;gap:30px}
     .foot{grid-template-columns:1fr 1fr}
   }
-  @media (max-width:640px){
+  @media(max-width:640px){
     .nav__links{display:none}
     .foot{grid-template-columns:1fr}
-    .band__in{flex-direction:column;align-items:flex-start}
-    .wa-float span.lbl{display:none}
+    .band .wrap{flex-direction:column;align-items:flex-start}
+    .wa-float span{display:none}
   }
   @media (prefers-reduced-motion:reduce){
-    *{animation:none !important;scroll-behavior:auto}
+    *{transition:none!important;animation:none!important;scroll-behavior:auto}
     .reveal{opacity:1;transform:none}
-    .ticker__track,.pmarquee__track{animation:none}
-    .reveal.in{transition:opacity 200ms ease}
   }
 </style>
 </head>
 <body>
 
-<!-- TICKER -->
-<div class="ticker" aria-hidden="true">
-  <div class="ticker__track" id="ticker"></div>
+<div class="util">
+  <div class="wrap">
+    <span>Playeras oficiales de equipos de todo el mundo</span>
+    <span class="sep hideSm">•</span>
+    <span class="hideSm">Envíos nacionales e internacionales</span>
+    <span class="sep hideSm">•</span>
+    <span class="hideSm">Pago seguro</span>
+  </div>
 </div>
 
-<!-- NAV -->
 <header class="nav">
   <div class="wrap nav__in">
-    <a href="#top" class="brand">FÚTBOL<b>THREADS</b></a>
-    <nav class="nav__links" aria-label="Principal">
-      <a href="#camisetas">Camisetas</a>
-      <a href="#jugadores">Jugadores</a>
-      <a href="#reviews">Reviews</a>
+    <a href="#top" class="brand"><span class="logo">⚽</span> Fútbol Threads</a>
+    <nav class="nav__links" aria-label="Navegación principal">
+      <a href="#coleccion">Colección</a>
+      <a href="#catalogo">Catálogo</a>
+      <a href="#nosotros">Por qué elegirnos</a>
+      <a href="#opiniones">Opiniones</a>
     </nav>
     <a class="btn btn--wa" id="navWa" href="#" target="_blank" rel="noopener">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.039zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
-      Pedir
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.039zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+      Pedir ahora
     </a>
   </div>
 </header>
 
 <a id="top"></a>
 
-<!-- HERO -->
 <section class="hero">
-  <div class="hero__grid">
-    <div class="hero__left">
-      <span class="hero__kicker">● MUNDIAL 2026 · EDICIÓN OFICIAL DE HINCHA</span>
-      <h1 class="display hero__title">VISTE LOS <em>COLORES</em> QUE <span class="stroke">RUGEN</span></h1>
-      <p class="hero__sub">Camisetas de selección, calidad jugador y versión hincha. Eliges, escribes por WhatsApp y la tuya sale en camino. Así de directo.</p>
+  <div class="wrap hero__in">
+    <div class="hero__copy">
+      <span class="hero__eyebrow">Temporada 2026</span>
+      <h1>Las playeras de los <span class="u">mejores equipos del mundo</span></h1>
+      <p class="hero__sub">Selecciones y clubes de todo el planeta, con calidad premium y autenticidad garantizada. Realiza tu pedido por WhatsApp con atención personalizada y recíbelo en la puerta de tu casa.</p>
       <div class="hero__cta">
-        <a class="btn btn--flare" href="#camisetas">Ver camisetas ↘</a>
-        <a class="btn btn--wa" id="heroWa" href="#" target="_blank" rel="noopener">Pedir por WhatsApp</a>
+        <a class="btn btn--dark btn--lg" href="#coleccion">Ver colección</a>
+        <a class="btn btn--wa btn--lg" id="heroWa" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.039zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+          Pedir por WhatsApp
+        </a>
       </div>
-      <div class="hero__stats">
-        <div class="hero__stat"><div class="n mono">48</div><div class="l">Selecciones</div></div>
-        <div class="hero__stat"><div class="n mono">4.9★</div><div class="l">1,200+ reviews</div></div>
-        <div class="hero__stat"><div class="n mono">24h</div><div class="l">Despacho</div></div>
+      <div class="hero__trust">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Producto auténtico</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> Envío internacional</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg> Atención por WhatsApp</span>
       </div>
     </div>
-    <div class="hero__right">
-      <span class="hero__badge">NUEVO DROP</span>
-      <div class="hero__jersey" id="heroJersey"></div>
-      <span class="hero__float mono">// edición local · #10</span>
+    <div class="hero__media">
+      <div class="frame">
+        <img src="https://images.unsplash.com/photo-1670489520245-c41cb342a565?auto=format&fit=crop&w=1100&q=80" alt="Jugador profesional de fútbol celebrando en el campo con su playera puesta" loading="eager">
+      </div>
+      <div class="hero__chip">
+        <span class="st">★★★★★</span>
+        <div><b>4.9 / 5</b><small>+1,200 pedidos entregados</small></div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- SHOP -->
-<section id="camisetas" class="shop wrap">
-  <div class="sec-head reveal">
-    <h2 class="display">EL <span class="mark">VESTIDOR</span></h2>
-    <p>Selecciones favoritas del torneo. Tallas S a XXL, niño y adulto. Toca una y pídela al instante.</p>
+<section id="coleccion" class="carousel">
+  <div class="shead reveal">
+    <span class="kick">Colección destacada</span>
+    <h2>Las playeras del momento</h2>
+    <p>Una selección rotativa de los modelos más solicitados de la temporada. Desliza o usa los controles para explorarlas.</p>
   </div>
-  <div class="grid" id="shopGrid"></div>
-</section>
-
-<!-- PLAYERS -->
-<section id="jugadores" class="players">
-  <div class="wrap sec-head reveal">
-    <h2 class="display">LOS <span class="mark">CRACKS</span></h2>
-    <p>Los dorsales que todo el mundo va a buscar este verano. Estampado oficial incluido.</p>
+  <div class="car__viewport" id="carViewport">
+    <div class="car__track" id="carTrack"></div>
   </div>
-  <div class="pmarquee" aria-hidden="false">
-    <div class="pmarquee__track" id="players"></div>
+  <div class="car__ctrls">
+    <button class="car__btn" id="carPrev" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 18l-6-6 6-6"/></svg></button>
+    <div class="car__dots" id="carDots"></div>
+    <button class="car__btn" id="carNext" aria-label="Siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 18l6-6-6-6"/></svg></button>
   </div>
 </section>
 
-<!-- REVIEWS -->
-<section id="reviews" class="reviews wrap">
-  <div class="sec-head reveal">
-    <h2 class="display">LO QUE DICE <span class="mark">LA HINCHADA</span></h2>
-    <p>Pedidos reales, clientes reales. Sin filtros.</p>
+<section id="catalogo" class="catalog wrap">
+  <div class="shead reveal">
+    <span class="kick">Catálogo</span>
+    <h2>Selecciones y clubes del mundo</h2>
+    <p>Tallas de la S a la XXL, versión jugador y versión aficionado. Consulta disponibilidad por WhatsApp.</p>
   </div>
-  <div class="rgrid" id="reviewGrid"></div>
+  <div class="grid" id="catGrid"></div>
 </section>
 
-<!-- BAND -->
+<section id="nosotros" class="trust">
+  <div class="wrap">
+    <div class="shead reveal">
+      <span class="kick">Por qué elegirnos</span>
+      <h2>Compra con confianza</h2>
+    </div>
+    <div class="trust__grid">
+      <div class="trust__card reveal">
+        <div class="trust__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>Autenticidad garantizada</h3>
+        <p>Trabajamos con proveedores verificados. Cada playera pasa por revisión de calidad antes de enviarse.</p>
+      </div>
+      <div class="trust__card reveal">
+        <div class="trust__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+        <h3>Envíos nacionales e internacionales</h3>
+        <p>Entregas de 2 a 4 días hábiles a nivel nacional y opciones de envío a otros países.</p>
+      </div>
+      <div class="trust__card reveal">
+        <div class="trust__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></div>
+        <h3>Atención personalizada</h3>
+        <p>Te asesoramos con tallas, estampados y disponibilidad directamente por WhatsApp, sin intermediarios.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="opiniones" class="reviews wrap">
+  <div class="shead reveal">
+    <span class="kick">Opiniones</span>
+    <h2>Lo que dicen nuestros clientes</h2>
+    <p>Reseñas verificadas de pedidos realizados a través de WhatsApp.</p>
+  </div>
+  <div class="rgrid" id="revGrid"></div>
+</section>
+
 <section class="band">
-  <div class="wrap band__in reveal">
-    <h2 class="display">¿LISTO PARA LLEVAR TU CAMISETA?</h2>
-    <a class="btn" id="bandWa" href="#" target="_blank" rel="noopener">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.039zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
-      Escríbenos ahora
+  <div class="wrap">
+    <div>
+      <h2>¿Listo para vestir tus colores?</h2>
+      <p>Escríbenos por WhatsApp y recibe asesoría personalizada en minutos.</p>
+    </div>
+    <a class="btn btn--wa btn--lg" id="bandWa" href="#" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.039zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+      Iniciar conversación
     </a>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer id="contacto">
+<footer>
   <div class="wrap">
     <div class="foot">
       <div>
-        <div class="brand display">FÚTBOL<b style="background:var(--flare);color:#fff;padding:2px 8px;display:inline-block">THREADS</b></div>
-        <p>Camisetas de fútbol para la hinchada de verdad. Pedidos directos por WhatsApp, envío a todo el país.</p>
+        <div class="brand"><span class="logo">⚽</span> Fútbol Threads</div>
+        <p>Playeras de fútbol oficiales de equipos de todo el mundo. Atención personalizada y pedidos por WhatsApp.</p>
       </div>
       <div>
         <h4>Tienda</h4>
         <ul>
-          <li><a href="#camisetas">Camisetas</a></li>
-          <li><a href="#jugadores">Jugadores</a></li>
-          <li><a href="#reviews">Reviews</a></li>
-          <li><a href="#" id="footWa">Pedir por WhatsApp</a></li>
+          <li><a href="#coleccion">Colección</a></li>
+          <li><a href="#catalogo">Catálogo</a></li>
+          <li><a href="#opiniones">Opiniones</a></li>
         </ul>
       </div>
       <div>
-        <h4>Contacto</h4>
+        <h4>Ayuda</h4>
         <ul>
-          <li><a href="#" id="footWa2">WhatsApp</a></li>
+          <li><a href="#" id="footWa">Pedir por WhatsApp</a></li>
+          <li><a href="#nosotros">Envíos y entregas</a></li>
+          <li><a href="#nosotros">Guía de tallas</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Síguenos</h4>
+        <ul>
           <li><a href="#">Instagram</a></li>
+          <li><a href="#">Facebook</a></li>
           <li><a href="#">TikTok</a></li>
-          <li><a href="#">Envíos y devoluciones</a></li>
         </ul>
       </div>
     </div>
     <div class="foot__bottom">
-      <span>© <span id="year"></span> FÚTBOL THREADS · Demo</span>
-      <span>Hecho para la hinchada // Mundial 2026</span>
+      <span>© <span id="year"></span> Fútbol Threads · Sitio demostrativo</span>
+      <span>Las mejores playeras del mundo, en un solo lugar</span>
     </div>
   </div>
 </footer>
 
-<!-- FLOATING WA -->
 <a class="wa-float" id="floatWa" href="#" target="_blank" rel="noopener" aria-label="Pedir por WhatsApp">
-  <span class="pulse"></span>
   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.039zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
-  <span class="lbl">WhatsApp</span>
+  <span>WhatsApp</span>
 </a>
 
-<!-- TOAST -->
-<div class="toast" id="toast"><span class="k">✓</span> <span id="toastMsg">Abriendo WhatsApp…</span></div>
+<div class="toast" id="toast"><span class="k">✓</span> <span id="toastMsg"></span></div>
 
 <script>
-/* ==================== CONFIG ==================== */
-/* 👇 CAMBIA este número por tu WhatsApp real (formato internacional, sin +, sin espacios).
-   Ejemplo México: 5215512345678  */
-const WHATSAPP_NUMBER = "5215555555555"; // <-- PLACEHOLDER, reemplazar
-const STORE = "Fútbol Threads";
+/* ===== CONFIG ===== */
+/* Reemplaza por tu numero real de WhatsApp (formato internacional, sin + ni espacios).
+   Ejemplo Mexico: 5215512345678 */
+var WHATSAPP_NUMBER = "5215555555555"; // PLACEHOLDER
+var STORE = "Futbol Threads";
+function waLink(m){ return "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(m); }
+var genericMsg = "Hola, " + STORE + ". Me interesa una playera de su coleccion. Me podrian brindar mas informacion?";
 
-function waLink(msg){
-  return "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(msg);
+/* ===== DATA (fotos reales verificadas de Unsplash) ===== */
+function U(id,w){ return "https://images.unsplash.com/photo-" + id + "?auto=format&fit=crop&w=" + (w||800) + "&q=80"; }
+var products = [
+  {team:"Brasil", cat:"Seleccion - Local", price:"1,299", tag:"Mas vendida", st:5, img:"1552066379-e7bfd22155c5", alt:"Playera amarilla de la seleccion de Brasil colgada en vestidor"},
+  {team:"Espana", cat:"Seleccion - Local", price:"1,249", tag:"Nueva", st:5, img:"1551854321-1432edd90a5c", alt:"Aficionado con la playera roja de la seleccion de Espana"},
+  {team:"Alemania", cat:"Seleccion - Visitante", price:"1,249", tag:"Edicion", st:4, img:"1551854386-b42759a60dd0", alt:"Playera verde de visitante de la seleccion de Alemania"},
+  {team:"Paises Bajos", cat:"Seleccion - Local", price:"1,199", tag:"Clasica", st:5, img:"1693683224122-0a8e206f248d", alt:"Playera naranja de la seleccion de Paises Bajos"},
+  {team:"FC Barcelona", cat:"Club - Edicion especial", price:"1,399", tag:"Premium", st:5, img:"1738091063217-1f59463342c9", alt:"Playera dorada del FC Barcelona, edicion especial"},
+  {team:"Arsenal FC", cat:"Club - Local", price:"1,199", tag:"Top", st:4, img:"1577212017184-80cc0da11082", alt:"Playera roja del Arsenal FC colgada"},
+  {team:"Manchester United", cat:"Club - Local", price:"1,349", tag:"Iconica", st:5, img:"1649771543037-916e2702008a", alt:"Playeras rojas del Manchester United en el vestidor"}
+];
+
+function stars(n){ return "★".repeat(n) + "☆".repeat(5-n); }
+
+var waSvg = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.039zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>';
+
+/* ===== CAROUSEL ===== */
+var carData = products.slice(0,6);
+var track = document.getElementById('carTrack');
+track.innerHTML = carData.map(function(p,i){
+  return '<div class="car__slide" data-i="'+i+'"><div class="car__card"><div class="car__img"><span class="car__badge">'+p.tag+'</span><img src="'+U(p.img,700)+'" alt="'+p.alt+'" loading="lazy"></div><div class="car__meta"><div><h3>'+p.team+'</h3><div class="cat">'+p.cat+'</div></div><div class="price">$'+p.price+'</div></div></div></div>';
+}).join('');
+
+var dotsWrap = document.getElementById('carDots');
+dotsWrap.innerHTML = carData.map(function(_,i){ return '<button class="car__dot" data-i="'+i+'" aria-label="Ir a la playera '+(i+1)+'"></button>'; }).join('');
+
+var slides = Array.prototype.slice.call(track.children);
+var dots = Array.prototype.slice.call(dotsWrap.children);
+var viewport = document.getElementById('carViewport');
+var active = 0, autoplay = null;
+
+function layout(){
+  var vpw = viewport.clientWidth;
+  var sw = slides[0].getBoundingClientRect().width;
+  var gap = 24;
+  var offset = (vpw/2) - (sw/2) - active*(sw+gap);
+  track.style.transform = 'translateX(' + offset + 'px)';
+  slides.forEach(function(s,i){ s.classList.toggle('is-active', i===active); });
+  dots.forEach(function(d,i){ d.classList.toggle('on', i===active); });
 }
-const genericMsg = `¡Hola ${STORE}! 👋 Vi su página y me interesa una camiseta del Mundial 2026. ¿Me ayudan?`;
+function go(i){ active = (i+carData.length)%carData.length; layout(); }
+function next(){ go(active+1); }
+function prev(){ go(active-1); }
 
-/* ==================== DATA ==================== */
-const jerseys = [
-  {team:"Argentina", price:"$649", num:10, rating:5, tag:"Bestseller", colors:{base:"#7CC3E8", stripe:"#FFFFFF", trim:"#0A0A0A", numCol:"#0A0A0A"}, pattern:"stripes"},
-  {team:"Brasil", price:"$649", num:10, rating:5, tag:"Top", colors:{base:"#FCD116", stripe:null, trim:"#1B7A3D", numCol:"#1B7A3D"}, pattern:"solid"},
-  {team:"Francia", price:"$629", num:10, rating:4, tag:"Nuevo", colors:{base:"#1A2A6C", stripe:null, trim:"#E4002B", numCol:"#FFFFFF"}, pattern:"solid"},
-  {team:"México", price:"$599", num:9, rating:5, tag:"Local", colors:{base:"#0E7C3A", stripe:null, trim:"#FFFFFF", numCol:"#FFFFFF"}, pattern:"solid"},
-  {team:"España", price:"$629", num:9, rating:4, tag:"Clásica", colors:{base:"#C60B1E", stripe:null, trim:"#FFC400", numCol:"#FFC400"}, pattern:"solid"},
-  {team:"Inglaterra", price:"$629", num:7, rating:4, tag:"Limpia", colors:{base:"#FFFFFF", stripe:null, trim:"#1A52B0", numCol:"#1A52B0"}, pattern:"solid"},
-  {team:"Portugal", price:"$629", num:7, rating:5, tag:"Edición", colors:{base:"#8B0E1F", stripe:null, trim:"#0E6B3A", numCol:"#FCD116"}, pattern:"solid"},
-  {team:"Países Bajos", price:"$609", num:4, rating:4, tag:"Naranja", colors:{base:"#FF6A00", stripe:null, trim:"#0A0A0A", numCol:"#0A0A0A"}, pattern:"solid"}
+document.getElementById('carNext').addEventListener('click', function(){ next(); restart(); });
+document.getElementById('carPrev').addEventListener('click', function(){ prev(); restart(); });
+dots.forEach(function(d){ d.addEventListener('click', function(){ go(+d.dataset.i); restart(); }); });
+slides.forEach(function(s){ s.addEventListener('click', function(){ go(+s.dataset.i); restart(); }); });
+
+function start(){ if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; autoplay = setInterval(next, 3800); }
+function stop(){ clearInterval(autoplay); }
+function restart(){ stop(); start(); }
+viewport.addEventListener('mouseenter', stop);
+viewport.addEventListener('mouseleave', start);
+
+var sx=0, dragging=false;
+viewport.addEventListener('pointerdown', function(e){ sx=e.clientX; dragging=true; stop(); });
+window.addEventListener('pointerup', function(e){ if(!dragging) return; dragging=false; var dx=e.clientX-sx; if(Math.abs(dx)>45){ dx<0?next():prev(); } start(); });
+window.addEventListener('resize', layout);
+layout(); start();
+
+/* ===== CATALOG ===== */
+document.getElementById('catGrid').innerHTML = products.map(function(p){
+  return '<article class="prod reveal"><div class="prod__img"><span class="prod__tag">'+p.tag+'</span><img src="'+U(p.img,600)+'" alt="'+p.alt+'" loading="lazy"></div><div class="prod__b"><div class="prod__row"><h3>'+p.team+'</h3><span class="prod__st">'+stars(p.st)+'</span></div><div class="prod__cat">'+p.cat+'</div><div class="prod__row" style="margin-top:4px"><span class="prod__price">$'+p.price+'</span></div><button class="btn btn--wa order" data-team="'+p.team+'" data-price="'+p.price+'">'+waSvg+' Consultar por WhatsApp</button></div></article>';
+}).join('');
+
+/* ===== REVIEWS ===== */
+var reviews = [
+  {nm:"Carlos Mendoza", ct:"Guadalajara", st:5, tx:"Excelente calidad, identica a la original. La atencion por WhatsApp fue muy rapida y la playera llego en tres dias."},
+  {nm:"Ana Robles", ct:"Buenos Aires", st:5, tx:"Pedi la playera de Espana y supero mis expectativas. El proceso de compra fue claro y la asesoria de talla, muy util."},
+  {nm:"Diego Salas", ct:"Bogota", st:5, tx:"Muy buena experiencia. Me resolvieron todas las dudas antes de comprar y el envio fue puntual."},
+  {nm:"Valentina Leon", ct:"Santiago", st:5, tx:"El acabado y el estampado se ven de primera. Volvere a comprar para toda la familia."},
+  {nm:"Jorge Tovar", ct:"Lima", st:5, tx:"Compre dos playeras y ambas llegaron perfectas. La atencion personalizada hace toda la diferencia."},
+  {nm:"Sofia Perez", ct:"Madrid", st:5, tx:"Sitio confiable y producto autentico. Recomendado para cualquier aficionado al futbol."}
 ];
+document.getElementById('revGrid').innerHTML = reviews.map(function(r){
+  return '<div class="rev reveal"><div class="st">'+stars(r.st)+'</div><p>“'+r.tx+'”</p><div class="who"><div class="av">'+r.nm.charAt(0)+'</div><div><div class="nm">'+r.nm+'</div><div class="ct">'+r.ct+'</div></div><div class="vf"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> Verificada</div></div></div>';
+}).join('');
 
-const players = [
-  {name:"Messi", num:10, team:"Argentina"},
-  {name:"Mbappé", num:10, team:"Francia"},
-  {name:"Vinícius", num:7, team:"Brasil"},
-  {name:"Bellingham", num:10, team:"Inglaterra"},
-  {name:"Lautaro", num:9, team:"Argentina"},
-  {name:"Pedri", num:8, team:"España"},
-  {name:"Haaland", num:9, team:"Noruega"},
-  {name:"Yamal", num:19, team:"España"}
-];
+/* ===== WHATSAPP WIRING ===== */
+['navWa','heroWa','bandWa','floatWa','footWa'].forEach(function(id){ var el=document.getElementById(id); if(el) el.href=waLink(genericMsg); });
 
-const reviews = [
-  {name:"Carlos M.", city:"Guadalajara", stars:5, text:"La calidad está de locos, la tela igualita a la de jugador. Pedí por WhatsApp y en dos días la tenía en casa."},
-  {name:"Ana R.", city:"CDMX", stars:5, text:"Compré la de Argentina con el 10 estampado. Llegó perfecta y el trato por WhatsApp súper rápido. Vuelvo a pedir seguro."},
-  {name:"Diego S.", city:"Monterrey", stars:4, text:"Muy buena la camiseta de México, los colores brutales. Tardó un día más de lo que pensé pero valió la pena."},
-  {name:"Valentina L.", city:"Puebla", stars:5, text:"Me asesoraron con la talla por chat y quedó ideal. El estampado de los cracks se ve premium."},
-  {name:"Jorge T.", city:"Querétaro", stars:5, text:"Pedí dos para mis hijos y vinieron con todo el detalle. Atención al cliente 10/10 por WhatsApp."},
-  {name:"Sofía P.", city:"Mérida", stars:4, text:"Diseño de la página increíble, te dan ganas de comprar todo. La de Brasil que pedí cumple totalmente."}
-];
-
-/* ==================== JERSEY SVG ==================== */
-function jerseySVG(j, id){
-  const c = j.colors;
-  const clip = "jclip"+id;
-  const stripes = (j.pattern==="stripes" && c.stripe) ? (()=>{
-    let r="";
-    for(let x=58;x<142;x+=14){ r+=`<rect x="${x}" y="40" width="7" height="175" fill="${c.stripe}"/>`; }
-    return r;
-  })() : "";
-  return `
-  <svg viewBox="0 0 200 230" role="img" aria-label="Camiseta de ${j.team}, dorsal ${j.num}" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <clipPath id="${clip}">
-        <path d="M82,40 L65,40 L18,70 L40,108 L58,92 L58,210 L142,210 L142,92 L160,108 L182,70 L135,40 L118,40 Q100,66 82,40 Z"/>
-      </clipPath>
-    </defs>
-    <g clip-path="url(#${clip})">
-      <rect x="10" y="30" width="180" height="190" fill="${c.base}"/>
-      ${stripes}
-      <rect x="10" y="30" width="180" height="9" fill="${c.trim}"/>
-    </g>
-    <!-- sleeve trims -->
-    <path d="M18,70 L40,108 L48,101 L28,66 Z" fill="${c.trim}"/>
-    <path d="M182,70 L160,108 L152,101 L172,66 Z" fill="${c.trim}"/>
-    <!-- collar -->
-    <path d="M82,40 Q100,66 118,40" fill="none" stroke="${c.trim}" stroke-width="6"/>
-    <!-- number -->
-    <text x="100" y="160" text-anchor="middle" font-family="Anton, sans-serif" font-size="88" fill="${c.numCol}">${j.num}</text>
-    <!-- outline -->
-    <path d="M82,40 L65,40 L18,70 L40,108 L58,92 L58,210 L142,210 L142,92 L160,108 L182,70 L135,40 L118,40 Q100,66 82,40 Z" fill="none" stroke="#0A0A0A" stroke-width="4" stroke-linejoin="round"/>
-  </svg>`;
-}
-
-/* ==================== RENDER ==================== */
-function starStr(n){ return "★".repeat(n) + "☆".repeat(5-n); }
-
-// Ticker
-const tickerItems = ["MUNDIAL 2026","ENVÍO A TODO EL PAÍS","PEDIDOS POR WHATSAPP","CALIDAD JUGADOR","NUEVO DROP DISPONIBLE","S · M · L · XL · XXL"];
-const tline = tickerItems.map(t=>`<span>${t}</span><span class="dot">✦</span>`).join("");
-document.getElementById("ticker").innerHTML = tline + tline;
-
-// Hero jersey (Argentina featured)
-document.getElementById("heroJersey").innerHTML = jerseySVG(jerseys[0], "hero");
-
-// Shop
-document.getElementById("shopGrid").innerHTML = jerseys.map((j,i)=>`
-  <article class="card">
-    <div class="card__media">
-      <span class="card__tag">${j.tag}</span>
-      <div class="card__jersey">${jerseySVG(j, i)}</div>
-    </div>
-    <div class="card__row">
-      <span class="card__team">${j.team}</span>
-      <span class="card__price mono">${j.price}</span>
-    </div>
-    <div class="card__meta"><span class="stars">${starStr(j.rating)}</span> · Dorsal #${j.num} · Hincha</div>
-    <button class="btn order" data-team="${j.team}" data-price="${j.price}">Pedir por WhatsApp</button>
-  </article>`).join("");
-
-// Players
-const ptrack = players.map(p=>`
-  <div class="pchip">
-    <span class="num">${p.num}</span>
-    <span class="info"><span class="name">${p.name}</span><span class="team">${p.team}</span></span>
-  </div>`).join("");
-document.getElementById("players").innerHTML = ptrack + ptrack;
-
-// Reviews
-document.getElementById("reviewGrid").innerHTML = reviews.map(r=>`
-  <div class="review reveal">
-    <span class="stars">${starStr(r.stars)}</span>
-    <p>“${r.text}”</p>
-    <div class="who">
-      <span class="avatar">${r.name.charAt(0)}</span>
-      <span><span class="nm">${r.name}</span><br><span class="meta mono">${r.city}</span></span>
-      <span class="verified">✓ Verificado</span>
-    </div>
-  </div>`).join("");
-
-document.getElementById("year").textContent = new Date().getFullYear();
-
-/* ==================== WHATSAPP WIRING ==================== */
-["navWa","heroWa","bandWa","floatWa","footWa","footWa2"].forEach(id=>{
-  const el=document.getElementById(id);
-  if(el) el.href = waLink(genericMsg);
+var toast=document.getElementById('toast'), toastMsg=document.getElementById('toastMsg'), tt;
+function showToast(m){ toastMsg.textContent=m; toast.classList.add('show'); clearTimeout(tt); tt=setTimeout(function(){ toast.classList.remove('show'); },3200); }
+document.getElementById('catGrid').addEventListener('click', function(e){
+  var b=e.target.closest('.order'); if(!b) return;
+  var msg="Hola, "+STORE+". Me interesa la playera de *"+b.dataset.team+"* ($"+b.dataset.price+"). Me confirman tallas disponibles y tiempo de envio?";
+  showToast('Abriendo WhatsApp - '+b.dataset.team);
+  window.open(waLink(msg),'_blank','noopener');
 });
 
-const toast=document.getElementById("toast");
-const toastMsg=document.getElementById("toastMsg");
-let toastTimer;
-function showToast(msg){
-  toastMsg.textContent=msg;
-  toast.classList.add("show");
-  clearTimeout(toastTimer);
-  toastTimer=setTimeout(()=>toast.classList.remove("show"),3200);
-}
+document.getElementById('year').textContent=new Date().getFullYear();
 
-document.getElementById("shopGrid").addEventListener("click",(e)=>{
-  const b=e.target.closest(".order");
-  if(!b) return;
-  const team=b.dataset.team, price=b.dataset.price;
-  const msg=`¡Hola ${STORE}! 👋 Quiero pedir la camiseta de *${team}* (${price}). ¿Me confirman tallas disponibles y el envío?`;
-  showToast(`Abriendo WhatsApp · ${team}`);
-  window.open(waLink(msg),"_blank","noopener");
-});
-
-/* ==================== SCROLL REVEAL ==================== */
-const io=new IntersectionObserver((entries)=>{
-  entries.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); } });
-},{threshold:0.12, rootMargin:"-40px"});
-document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+/* ===== REVEAL ===== */
+var io=new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } }); },{threshold:0.12,rootMargin:'-30px'});
+document.querySelectorAll('.reveal').forEach(function(el,i){ el.style.transitionDelay=(Math.min(i%4,3)*60)+'ms'; io.observe(el); });
 </script>
 </body>
 </html>
