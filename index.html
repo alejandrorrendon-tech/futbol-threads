@@ -40,9 +40,9 @@
   .badge .dot{fill:var(--gold)}
 
   /* ===== SCROLL-SCRUB INTRO ===== */
-  .scrub{position:relative;height:280vh;background:#000}
-  .scrub__sticky{position:sticky;top:0;height:100vh;overflow:hidden;display:grid;place-items:center}
-  .scrub__sticky video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .scrub{position:relative;height:240vh;background:#000}
+  .scrub__sticky{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:grid;place-items:center}
+  .scrub__sticky video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:translateZ(0)}
   .scrub__vig{position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 45%,rgba(0,0,0,.55) 100%);pointer-events:none}
   .scrub__cap{position:relative;z-index:2;text-align:center;display:flex;flex-direction:column;align-items:center;gap:18px;align-self:end;margin-bottom:8vh}
   .scrub__tag{font-family:'Oswald',sans-serif;letter-spacing:7px;font-size:clamp(12px,1.4vw,15px);text-transform:uppercase;color:var(--gold)}
@@ -122,7 +122,8 @@
 
   /* ===== CAROUSEL (ligado al scroll) ===== */
   .carScroll{position:relative;height:340vh}
-  .carScroll__sticky{position:sticky;top:0;min-height:100vh;display:flex;flex-direction:column;justify-content:center;gap:6px;overflow:hidden;padding-block:30px}
+  .carScroll__sticky{position:sticky;top:0;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;gap:6px;overflow:hidden;padding-block:30px}
+  .car__viewport::-webkit-scrollbar{display:none}
   .carScroll .shead{padding-block:0 8px}
   .car__viewport{overflow:hidden;padding-block:30px;perspective:1600px}
   .car__track{display:flex;align-items:center;gap:0;will-change:transform;transform-style:preserve-3d}
@@ -271,6 +272,20 @@
     .band .wrap{flex-direction:column;align-items:flex-start}
     .wa-float span{display:none}
     .car__slide{margin-inline:-8px}
+  }
+  /* ===== MÓVIL: animación e interacción simplificadas y fluidas ===== */
+  @media(max-width:760px){
+    /* Intro: video normal en bucle, sin scroll-scrub */
+    .scrub{height:auto}
+    .scrub__sticky{position:relative;height:74svh;min-height:420px}
+    .scrub__cap{margin-bottom:6vh}
+    /* Carrusel: deslizar con el dedo (scroll-snap), sin 3D ni pin */
+    .carScroll{height:auto}
+    .carScroll__sticky{position:relative;min-height:0;overflow:visible;padding-block:30px;gap:14px}
+    .car__viewport{overflow-x:auto;overflow-y:hidden;perspective:none;padding:14px 0;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+    .car__track{gap:16px;padding-inline:16vw;transform:none!important;transform-style:flat}
+    .car__slide{width:68vw;margin-inline:0;opacity:1!important;filter:none!important;transform:none!important;scroll-snap-align:center}
+    .car__slide .car__card{border-color:var(--line)}
   }
   @media (prefers-reduced-motion:reduce){
     *{transition:none!important;animation-duration:.01ms!important}
@@ -538,8 +553,11 @@
 
 <div class="toast" id="toast"><span class="k">✓</span> <span id="toastMsg"></span></div>
 
+<!-- Catálogo editable desde admin.html. Si no existe, usa el catálogo por defecto. -->
+<script src="jerseys.js" onerror="console.log('jerseys.js no encontrado; usando catálogo por defecto')"></script>
 <script>
 /* ===== CONFIG ===== */
+var IS_MOBILE = window.matchMedia('(max-width:760px)').matches;
 var WHATSAPP_NUMBER = "5215555555555"; // PLACEHOLDER — reemplaza por tu numero real (formato internacional, sin + ni espacios)
 var STORE = "DAMAJA Jerseys";
 function waLink(m){ return "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(m); }
@@ -549,6 +567,11 @@ var genericMsg = "Hola, " + STORE + ". Me interesa una camiseta retro de su cole
 (function(){
   var scrub=document.getElementById('scrub'), vid=document.getElementById('scrubVid');
   if(!scrub||!vid) return;
+  if(IS_MOBILE){ // en móvil: video en bucle (fluido), sin scroll-scrub
+    vid.loop=true; vid.muted=true; vid.setAttribute('muted',''); vid.setAttribute('playsinline','');
+    var pm=vid.play(); if(pm&&pm.catch) pm.catch(function(){});
+    return;
+  }
   var dur=0, targetT=0, curT=0;
   try{ vid.pause(); }catch(e){}
   function setDur(){ dur=vid.duration||0; computeTarget(); }
@@ -572,9 +595,9 @@ var genericMsg = "Hola, " + STORE + ". Me interesa una camiseta retro de su cole
 
 /* ===== DATA (playeras reales del repo, vía CDN jsDelivr) ===== */
 var IMG_BASE = "https://cdn.jsdelivr.net/gh/alejandrorrendon-tech/futbol-threads@main/";
-function front(id){ return IMG_BASE + id + "-front.jpg"; }
-function back(id){ return IMG_BASE + id + "-back.jpg"; }
-var products = [
+function front(p){ return p.front || (IMG_BASE + p.id + "-front.jpg"); }
+function back(p){ return p.back || (IMG_BASE + p.id + "-back.jpg"); }
+var DEFAULT_JERSEYS = [
   {team:"Andrés Guardado", id:"guardado", num:"18", club:"Club León", season:"2024-25", brand:"Charly", type:"Usada en Juego", tag:"Usada en Juego", st:5,
    desc:"Jersey utilizado por Andrés Guardado durante su etapa con Club León. Presenta el distintivo dorsal rosa conmemorativo y todas las aplicaciones oficiales utilizadas para competencia profesional.",
    notes:"Usada en Juego vs Juárez · 3-2 a favor de León"},
@@ -591,14 +614,16 @@ var products = [
    desc:"Jersey de utilería de Sergio Ramos con dorsal #93, correspondiente a la primera etapa del defensor español con Rayados de Monterrey. Presenta el diseño especial de Puma utilizado durante la participación internacional del club, incluyendo parche oficial FIFA en la manga.",
    notes:"Incluye parche oficial FIFA en la manga"}
 ];
-function stars(n){ return "★".repeat(n) + "☆".repeat(5-n); }
+/* Las playeras vienen de jerseys.js (editable desde admin.html). Si no existe, usa las de arriba. */
+var products = (window.JERSEYS && window.JERSEYS.length) ? window.JERSEYS : DEFAULT_JERSEYS;
+function stars(n){ n=+n||0; return "★".repeat(n) + "☆".repeat(5-n); }
 var waSvg = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.039zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>';
 
 /* ===== CAROUSEL (ligado al scroll, suave) ===== */
 var carData = products.slice(0,5);
 var track = document.getElementById('carTrack');
 track.innerHTML = carData.map(function(p,i){
-  return '<div class="car__slide" data-i="'+i+'"><div class="car__card"><div class="car__img"><span class="car__badge">'+p.tag+'</span><img src="'+front(p.id)+'" alt="Playera '+p.team+'" loading="lazy"></div><div class="car__meta"><div><h3>'+p.team+'</h3><div class="cat">'+p.club+'</div></div><div class="price">#'+p.num+'</div></div></div></div>';
+  return '<div class="car__slide" data-i="'+i+'"><div class="car__card"><div class="car__img"><span class="car__badge">'+p.tag+'</span><img src="'+front(p)+'" alt="Playera '+p.team+'" loading="lazy"></div><div class="car__meta"><div><h3>'+p.team+'</h3><div class="cat">'+p.club+'</div></div><div class="price">#'+p.num+'</div></div></div></div>';
 }).join('');
 var dotsWrap = document.getElementById('carDots');
 dotsWrap.innerHTML = carData.map(function(_,i){ return '<button class="car__dot" data-i="'+i+'" aria-label="Ir a la '+(i+1)+'"></button>'; }).join('');
@@ -638,18 +663,35 @@ function carLoop(){
   renderCar(currentF);
   requestAnimationFrame(carLoop);
 }
-window.addEventListener('scroll', updateTarget, {passive:true});
-window.addEventListener('resize', function(){ updateTarget(); renderCar(currentF); });
 slides.forEach(function(s){ s.addEventListener('click', function(){ openModal(products[+s.dataset.i]); }); });
-dots.forEach(function(d){ d.addEventListener('click', function(){
-  var i=+d.dataset.i, total=carSec.offsetHeight-window.innerHeight;
-  window.scrollTo({top: carSec.offsetTop + (i/Math.max(1,nCar-1))*total, behavior:'smooth'});
-}); });
-updateTarget(); currentF = targetF; renderCar(currentF); requestAnimationFrame(carLoop);
+
+if(IS_MOBILE){
+  /* Móvil: carrusel nativo de deslizar; los puntos siguen y posicionan */
+  function syncDots(){
+    var c=viewport.scrollLeft + viewport.clientWidth/2, idx=0, best=1e9;
+    slides.forEach(function(s,i){ var center=s.offsetLeft + s.offsetWidth/2, d=Math.abs(center-c); if(d<best){ best=d; idx=i; } });
+    dots.forEach(function(dd,i){ dd.classList.toggle('on', i===idx); });
+    slides.forEach(function(s,i){ s.classList.toggle('is-active', i===idx); });
+  }
+  viewport.addEventListener('scroll', function(){ requestAnimationFrame(syncDots); }, {passive:true});
+  dots.forEach(function(d){ d.addEventListener('click', function(){
+    var i=+d.dataset.i; if(slides[i]) slides[i].scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'});
+  }); });
+  setTimeout(syncDots, 80);
+} else {
+  /* Escritorio: coverflow ligado al scroll */
+  window.addEventListener('scroll', updateTarget, {passive:true});
+  window.addEventListener('resize', function(){ updateTarget(); renderCar(currentF); });
+  dots.forEach(function(d){ d.addEventListener('click', function(){
+    var i=+d.dataset.i, total=carSec.offsetHeight-window.innerHeight;
+    window.scrollTo({top: carSec.offsetTop + (i/Math.max(1,nCar-1))*total, behavior:'smooth'});
+  }); });
+  updateTarget(); currentF = targetF; renderCar(currentF); requestAnimationFrame(carLoop);
+}
 
 /* ===== CATALOG ===== */
 document.getElementById('catGrid').innerHTML = products.map(function(p,i){
-  return '<article class="prod reveal" data-i="'+i+'" style="cursor:pointer"><div class="prod__img"><span class="prod__tag">'+p.tag+'</span><span class="flip-hint">Frente / Espalda ⟳</span><div class="flip"><div class="face front"><img src="'+front(p.id)+'" alt="Playera '+p.team+' frente" loading="lazy"></div><div class="face back"><img src="'+back(p.id)+'" alt="Playera '+p.team+' espalda" loading="lazy"></div></div></div><div class="prod__b"><div class="prod__row"><h3>'+p.team+' <span style="color:var(--gold)">#'+p.num+'</span></h3></div><div class="prod__cat">'+p.club+' · '+p.season+'</div><div class="prod__row" style="margin-top:4px"><span class="prod__st">'+stars(p.st)+'</span><span class="prod__cat" style="color:var(--cream)">'+p.brand+'</span></div><button class="btn btn--wa order" data-i="'+i+'">'+waSvg+' Ver ficha y pedir</button></div></article>';
+  return '<article class="prod reveal" data-i="'+i+'" style="cursor:pointer"><div class="prod__img"><span class="prod__tag">'+p.tag+'</span><span class="flip-hint">Frente / Espalda ⟳</span><div class="flip"><div class="face front"><img src="'+front(p)+'" alt="Playera '+p.team+' frente" loading="lazy"></div><div class="face back"><img src="'+back(p)+'" alt="Playera '+p.team+' espalda" loading="lazy"></div></div></div><div class="prod__b"><div class="prod__row"><h3>'+p.team+' <span style="color:var(--gold)">#'+p.num+'</span></h3></div><div class="prod__cat">'+p.club+' · '+p.season+'</div><div class="prod__row" style="margin-top:4px"><span class="prod__st">'+stars(p.st)+'</span><span class="prod__cat" style="color:var(--cream)">'+p.brand+'</span></div><button class="btn btn--wa order" data-i="'+i+'">'+waSvg+' Ver ficha y pedir</button></div></article>';
 }).join('');
 
 /* ===== REVIEWS ===== */
@@ -690,7 +732,7 @@ function openModal(p){
   var specs=[["Jugador",p.team],["Número","#"+p.num],["Club",p.club],["Temporada",p.season],["Marca",p.brand],["Tipo",p.type]];
   mSpecs.innerHTML=specs.map(function(r){ return '<div class="row"><span class="k">'+r[0]+'</span><span class="v">'+r[1]+'</span></div>'; }).join('');
   mNotes.textContent=p.notes||"";
-  mTf.src=front(p.id); mTb.src=back(p.id); mImg.src=front(p.id); mImg.alt="Jersey "+p.team;
+  mTf.src=front(p); mTb.src=back(p); mImg.src=front(p); mImg.alt="Jersey "+p.team;
   document.querySelectorAll('.mthumb').forEach(function(t){ t.classList.toggle('on', t.dataset.side==='front'); });
   buildWa();
   modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); document.body.classList.add('locked');
@@ -699,7 +741,7 @@ function closeModal(){ modal.classList.remove('open'); modal.setAttribute('aria-
 modal.addEventListener('click', function(e){
   if(e.target.hasAttribute('data-close')) return closeModal();
   var th=e.target.closest('.mthumb');
-  if(th){ var side=th.dataset.side; mImg.src=(side==='front')?front(current.id):back(current.id); document.querySelectorAll('.mthumb').forEach(function(t){ t.classList.toggle('on', t===th); }); return; }
+  if(th){ var side=th.dataset.side; mImg.src=(side==='front')?front(current):back(current); document.querySelectorAll('.mthumb').forEach(function(t){ t.classList.toggle('on', t===th); }); return; }
 });
 document.addEventListener('keydown', function(e){ if(e.key==='Escape' && modal.classList.contains('open')) closeModal(); });
 
