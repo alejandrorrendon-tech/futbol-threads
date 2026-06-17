@@ -275,10 +275,8 @@
   }
   /* ===== MÓVIL: animación e interacción simplificadas y fluidas ===== */
   @media(max-width:760px){
-    /* Intro: video normal en bucle, sin scroll-scrub */
-    .scrub{height:auto}
-    .scrub__sticky{position:relative;height:74svh;min-height:420px}
-    .scrub__cap{margin-bottom:6vh}
+    /* Intro: se mantiene el scroll-scrub (pinned). Acorta un poco el recorrido. */
+    .scrub{height:210vh}
     /* Carrusel: deslizar con el dedo (scroll-snap), sin 3D ni pin */
     .carScroll{height:auto}
     .carScroll__sticky{position:relative;min-height:0;overflow:visible;padding-block:30px;gap:14px}
@@ -567,25 +565,24 @@ var genericMsg = "Hola, " + STORE + ". Me interesa una camiseta retro de su cole
 (function(){
   var scrub=document.getElementById('scrub'), vid=document.getElementById('scrubVid');
   if(!scrub||!vid) return;
-  if(IS_MOBILE){ // en móvil: video en bucle (fluido), sin scroll-scrub
-    vid.loop=true; vid.muted=true; vid.setAttribute('muted',''); vid.setAttribute('playsinline','');
-    var pm=vid.play(); if(pm&&pm.catch) pm.catch(function(){});
-    return;
-  }
+  vid.muted=true; vid.setAttribute('muted',''); vid.setAttribute('playsinline','');
   var dur=0, targetT=0, curT=0;
-  try{ vid.pause(); }catch(e){}
+  function prime(){ var p=vid.play(); if(p&&p.then){ p.then(function(){ vid.pause(); }).catch(function(){}); } else { try{vid.pause();}catch(e){} } }
   function setDur(){ dur=vid.duration||0; computeTarget(); }
   vid.addEventListener('loadedmetadata', setDur);
   if(vid.readyState>=1) setDur();
+  prime();
+  window.addEventListener('touchstart', prime, {once:true, passive:true});
   function computeTarget(){
     var total=scrub.offsetHeight - window.innerHeight;
     var prog= total>0 ? Math.min(1,Math.max(0, -scrub.getBoundingClientRect().top/total)) : 0;
-    targetT = dur ? (0.08 + prog*0.90)*dur : 0; // arranca ~8% adentro: no negro total
+    targetT = dur ? (0.06 + prog*0.92)*dur : 0; // arranca ~6% adentro: no negro total
   }
+  function seek(t){ try{ if(typeof vid.fastSeek==='function') vid.fastSeek(t); else vid.currentTime=t; }catch(e){} }
   function loop(){
-    curT += (targetT - curT) * 0.2;
-    if(Math.abs(targetT-curT) < 0.008) curT = targetT;
-    if(dur){ try{ vid.currentTime = curT; }catch(e){} }
+    curT += (targetT - curT) * (IS_MOBILE?0.25:0.2);
+    if(Math.abs(targetT-curT) < 0.01) curT = targetT;
+    if(dur) seek(curT);
     requestAnimationFrame(loop);
   }
   window.addEventListener('scroll', computeTarget, {passive:true});
